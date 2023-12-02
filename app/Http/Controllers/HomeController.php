@@ -10,7 +10,18 @@ class HomeController extends Controller
     return view('client.index');
    }
 
-   public function indexc(Request $request){
-    return view('client.index');
+   public function about(){
+    return view('client.about');
+   }
+
+   public function shop(){
+    return view('client.shop');
+   }
+
+   public function furniture(){
+    return view('client.furniture');
+   }
+   public function contact(){
+    return view('client.contact');
    }
 }

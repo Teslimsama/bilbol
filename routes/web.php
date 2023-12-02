@@ -14,16 +14,15 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('client.index');
-});
-Route::get('/about', function () {
-    return view('client.about');
-});
-Route::controller(HomeController::class)->group(function () {
-    Route::get('/home', 'index')->name('home');
-    // Route::post('/home', 'storeUser')->name('home');`
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
+Route::get('/furniture', [HomeController::class, 'furniture'])->name('furniture');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // Route::post('/home', 'storeUser')->name('home');         
+
 // Route::controller(SalaryController::class)->group(function () {
 //     Route::get('salary/page', 'salary')->name('salary/page');
 //     Route::get('salary/add/page', 'salaryAdd')->middleware('auth')->name('salary/add/page'); // page expenses
