@@ -48,19 +48,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav  ">
                             <li class="nav-item ">
-                                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="about.html"> About</a>
+                                <a class="nav-link" href="{{route('about')}}">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="shop.html">Shop </a>
+                                <a class="nav-link" href="{{route('shop')}}">Shop </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="furniture.html"> Furniture </a>
+                                <a class="nav-link" href="{{route('furniture')}}"> Furniture </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact us</a>
+                                <a class="nav-link" href="{{route('contact')}}">Contact us</a>
                             </li>
                         </ul>
                         <div class="user_option">
@@ -90,13 +90,10 @@
                             </button>
                         </div>
                     </div>
-
                 </nav>
             </div>
         </header>
-        <!-- end header section -->
     </div>
-
 @yield('content')
 
     
