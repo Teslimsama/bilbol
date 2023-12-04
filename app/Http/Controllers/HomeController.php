@@ -17,6 +17,9 @@ class HomeController extends Controller
    public function shop(){
     return view('client.shop');
    }
+   public function AdminIndex(){
+    return view('admin.index');
+   }
 
    public function furniture(){
     return view('client.furniture');

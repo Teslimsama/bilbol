@@ -19,6 +19,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
 Route::get('/furniture', [HomeController::class, 'furniture'])->name('furniture');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/adminindex', [HomeController::class, 'adminindex'])->name('adminindex');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
     // Route::post('/home', 'storeUser')->name('home');         
