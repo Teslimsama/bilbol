@@ -28,6 +28,12 @@
     <link href="{{ URL::to('assets/css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
     <link href="{{ URL::to('assets/css/responsive.css') }}" rel="stylesheet" />
+    <!-- resources/views/layouts/app.blade.php -->
+    {{-- message toastr --}}
+    <link rel="stylesheet" href="{{ URL::to('assets/css/toastr.min.css') }}">
+    {{-- message toastr --}}
+    <script src="{{ URL::to('assets/js/toastr_jquery.min.js') }}"></script>
+    <script src="{{ URL::to('assets/js/toastr.min.js') }}"></script>
 </head>
 
 <body class="sub_page">
@@ -48,26 +54,27 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav  ">
                             <li class="nav-item ">
-                                <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ route('home') }}">Home <span
+                                        class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="{{route('about')}}">About</a>
+                                <a class="nav-link" href="{{ route('about') }}">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('shop')}}">Shop </a>
+                                <a class="nav-link" href="{{ route('shop') }}">Shop </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('furniture')}}"> Furniture </a>
+                                <a class="nav-link" href="{{ route('furniture') }}"> Furniture </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('contact')}}">Contact us</a>
+                                <a class="nav-link" href="{{ route('contact') }}">Contact us</a>
                             </li>
                         </ul>
                         <div class="user_option">
                             <a href="">
                                 <img src="assets/images/user.png" alt="">
                                 <span>
-                                    Login
+                                    <a class="nav-link" href="{{ route('login') }}">Login</a>
                                 </span>
                             </a>
                             <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
@@ -94,9 +101,10 @@
             </div>
         </header>
     </div>
-@yield('content')
+    {{-- message --}}
+    {!! Toastr::message() !!}
+    @yield('content')
 
-    
     <!-- info section -->
     <section class="info_section layout_padding2">
         <div class="container">
@@ -285,6 +293,7 @@
 
         })
     </script>
+    
     @yield('script')
 
 </body>

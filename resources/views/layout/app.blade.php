@@ -19,11 +19,16 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ URL::to('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    {{-- message toastr --}}
+    <link rel="stylesheet" href="{{ URL::to('assets/css/toastr.min.css') }}">
+    {{-- message toastr --}}
+    <script src="{{ URL::to('assets/js/toastr_jquery.min.js') }}"></script>
+    <script src="{{ URL::to('assets/js/toastr.min.js') }}"></script>
 </head>
 
 <body class="bg-gradient-primary">
-
+    {{-- message --}}
+    {!! Toastr::message() !!}
     @yield('content')
 
     <!-- Bootstrap core JavaScript-->
@@ -35,6 +40,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ URL::to('assets/js/sb-admin-2.min.js') }}"></script>
+   
 
 </body>
 

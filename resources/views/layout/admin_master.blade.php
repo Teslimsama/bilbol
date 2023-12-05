@@ -19,7 +19,11 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ URL::to('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    {{-- message toastr --}}
+    <link rel="stylesheet" href="{{ URL::to('assets/css/toastr.min.css') }}">
+    {{-- message toastr --}}
+    <script src="{{ URL::to('assets/js/toastr_jquery.min.js') }}"></script>
+    <script src="{{ URL::to('assets/js/toastr.min.js') }}"></script>
 </head>
 
 <body id="page-top">
@@ -356,7 +360,8 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
+                {{-- message --}}
+                {!! Toastr::message() !!}
                 <!-- Begin Page Content -->
                 @yield('content')
 
