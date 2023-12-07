@@ -7,7 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use DB;
 use Auth;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -74,28 +74,27 @@ class LoginController extends Controller
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
                 /** get session */
                 $user = Auth::User();
-                Session::put('name', $user->name);
+                Session::put('firstname', $user->firstname);
+                Session::put('lastname', $user->lastname);
                 Session::put('email', $user->email);
                 Session::put('id', $user->id);
                 Session::put('join_date', $user->join_date);
                 Session::put('phone_number', $user->phone_number);
-                Session::put('status', $user->status);
                 Session::put('role_name', $user->role_name);
                 Session::put('image', $user->image);
                 // remove the code below if wantsellabeg
 
-                
-            
 
-                // Toastr::success('Login successfully :)', 'Success');
-                // return redirect()->intended('home');
+
+                Toastr::success('Login successfully :)', 'Success');
+                return redirect()->intended('dashboard');
             } else {
-                // Toastr::error('fail, WRONG USERNAME OR PASSWORD :)', 'Error');
+                Toastr::error('fail, WRONG USERNAME OR PASSWORD :)', 'Error');
                 return redirect('login');
             }
         } catch (\Exception $e) {
             DB::rollback();
-            // Toastr::error('fail, LOGIN :)', 'Error');
+            Toastr::error('fail, LOGIN :)', 'Error');
             return redirect()->back();
         }
     }
