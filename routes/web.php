@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
 
 /*
@@ -16,6 +18,21 @@ use App\Http\Controllers\Auth\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/forgot_password', [PasswordResetLinkController::class, 'create'])
+    ->name('password.request');
+
+Route::post('password/email', [PasswordResetLinkController::class, 'store'])
+    ->name('password.email');
+
+Route::get('reset_password/{token}', [NewPasswordController::class, 'create'])
+    ->name('password.reset');
+
+Route::post('reset_password', [NewPasswordController::class, 'store'])
+    ->name('password.update');
 
 Route::controller(ClientController::class)->group(function () {
     Route::get('/',  'index')->name('home');
@@ -28,7 +45,7 @@ Route::controller(ClientController::class)->group(function () {
 
 Route::controller(AdminController::class)->group(function () {
     Route::get('/dashboard',  'dashboard')->name('dashboard');
-    Route::get('/forgot_password',  'forgot_password')->name('forgot_password');
+    // Route::get('/forgot_password',  'forgot_password')->name('forgot_password');
 });
 // ----------------------------login ------------------------------//
 Route::controller(LoginController::class)->group(function () {
@@ -53,6 +70,3 @@ Route::controller(RegisterController::class)->group(function(){
 //     Route::put('salary/updatedata/{id}', 'update')->name('salary/update-data');
 //     Route::post('salary/delete', 'salaryDelete')->name('salary/delete'); // delete record salary
 // });
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

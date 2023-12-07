@@ -16,15 +16,20 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
-                                        <p class="mb-4">We get it, stuff happens. Just enter your email address below
+                                        <p class="mb-4">We get it, stuff happens. Just enter your password address below
                                             and we'll send you a link to reset your password!</p>
                                     </div>
-                                    <form class="user" action="{{ route('password.email') }}" method="POST">
                                         @csrf
+                                    <form class="user" action="{{ route('password.password') }}" method="POST">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp" name="email"
-                                                placeholder="Enter Email Address...">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputpassword" aria-describedby="passwordHelp" name="password"
+                                                placeholder="Enter password Address...">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputpassword" aria-describedby="passwordHelp" name="password"
+                                                placeholder="Enter password Address...">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Reset Password
