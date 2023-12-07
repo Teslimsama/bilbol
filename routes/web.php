@@ -9,7 +9,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 
-/*
+/* rf
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
