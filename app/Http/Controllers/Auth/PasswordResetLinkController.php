@@ -30,27 +30,23 @@ class PasswordResetLinkController extends Controller
         $request->validate([
             'email' => ['required', 'email'],
         ]);
-    
+
         $user = User::where('email', $request->email)->first();
-    
+
         if (!$user) {
             // User with the provided email does not exist
             Toastr::error('Email does not exist in our records.', 'Error');
             return back()->withInput($request->only('email'));
         }
-    
+
         // User exists, proceed to send the password reset link
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
-    
+        $status = Password::sendResetLink($request->only('email'));
+
         // Check the status and display Toastr messages accordingly
         return $status == Password::RESET_LINK_SENT
-                    ? redirect()->route('login')->with('status', __('Password reset link sent successfully. Check your email.'))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __('Unable to send password reset link. Please try again.')]);
+            ? Toastr::success(__('Password reset link sent successfully.'), 'Success')
+            : Toastr::error(__('Unable to send password reset link.'), 'Error');
     }
-   
 }
 
 
