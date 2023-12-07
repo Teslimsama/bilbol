@@ -3,9 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\AdminController;
+<<<<<<< HEAD
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+=======
+>>>>>>> parent of f518edf (login works now)
 use App\Http\Controllers\Auth\RegisterController;
 
 /*
@@ -44,18 +47,15 @@ Route::controller(ClientController::class)->group(function () {
 });
 
 Route::controller(AdminController::class)->group(function () {
+<<<<<<< HEAD
     Route::get('/dashboard',  'dashboard')->name('dashboard');
     // Route::get('/forgot_password',  'forgot_password')->name('forgot_password');
-});
-// ----------------------------login ------------------------------//
-Route::controller(LoginController::class)->group(function () {
-    Route::get('/login', 'login')->name('login');
-    Route::post('/loginnow', 'authenticate')->name('loginnow');
-    Route::get('/logout', 'logout')->name('logout');
-    Route::post('change/password', 'changePassword')->name('change/password');
+=======
+    Route::get('/login',  'login')->name('login');
+    Route::get('/forgot_password',  'forgot_password')->name('forgot_password');
+>>>>>>> parent of f518edf (login works now)
 });
 
-// ----------------------------Register ------------------------------//
 Route::controller(RegisterController::class)->group(function(){
     Route::get('/register', 'register')->name('register');
     Route::post('/registernow', 'storeUser')->name('registernow');
@@ -69,4 +69,8 @@ Route::controller(RegisterController::class)->group(function(){
 //     Route::post('salary/update', 'salaryUpdate')->name('salary/update'); // update record expenses
 //     Route::put('salary/updatedata/{id}', 'update')->name('salary/update-data');
 //     Route::post('salary/delete', 'salaryDelete')->name('salary/delete'); // delete record salary
+<<<<<<< HEAD
 // });
+=======
+// });
+>>>>>>> parent of f518edf (login works now)
