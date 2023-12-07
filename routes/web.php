@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\AdminController;
 <<<<<<< HEAD
+<<<<<<< HEAD
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+=======
+>>>>>>> parent of f518edf (login works now)
 =======
 >>>>>>> parent of f518edf (login works now)
 use App\Http\Controllers\Auth\RegisterController;
@@ -48,8 +51,13 @@ Route::controller(ClientController::class)->group(function () {
 
 Route::controller(AdminController::class)->group(function () {
 <<<<<<< HEAD
+<<<<<<< HEAD
     Route::get('/dashboard',  'dashboard')->name('dashboard');
     // Route::get('/forgot_password',  'forgot_password')->name('forgot_password');
+=======
+    Route::get('/login',  'login')->name('login');
+    Route::get('/forgot_password',  'forgot_password')->name('forgot_password');
+>>>>>>> parent of f518edf (login works now)
 =======
     Route::get('/login',  'login')->name('login');
     Route::get('/forgot_password',  'forgot_password')->name('forgot_password');
@@ -70,7 +78,11 @@ Route::controller(RegisterController::class)->group(function(){
 //     Route::put('salary/updatedata/{id}', 'update')->name('salary/update-data');
 //     Route::post('salary/delete', 'salaryDelete')->name('salary/delete'); // delete record salary
 <<<<<<< HEAD
+<<<<<<< HEAD
 // });
+=======
+// });
+>>>>>>> parent of f518edf (login works now)
 =======
 // });
 >>>>>>> parent of f518edf (login works now)
