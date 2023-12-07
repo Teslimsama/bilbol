@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    public function login()
     {
-        return view('admin.index');
+        return view('auth.login');
     }
 
     public function forgot_password()

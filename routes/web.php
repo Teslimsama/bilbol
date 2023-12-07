@@ -48,15 +48,14 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/dashboard',  'dashboard')->name('dashboard');
     // Route::get('/forgot_password',  'forgot_password')->name('forgot_password');
 });
-// ----------------------------login ------------------------------//
-Route::controller(LoginController::class)->group(function () {
+
+Route::controller(LoginController::class)->group(function(){
     Route::get('/login', 'login')->name('login');
     Route::post('/loginnow', 'authenticate')->name('loginnow');
-    Route::get('/logout', 'logout')->name('logout');
+    Route::post('/logout', 'logout')->name('logout');
     Route::post('change/password', 'changePassword')->name('change/password');
-});
 
-// ----------------------------Register ------------------------------//
+});
 Route::controller(RegisterController::class)->group(function(){
     Route::get('/register', 'register')->name('register');
     Route::post('/registernow', 'storeUser')->name('registernow');
@@ -71,3 +70,9 @@ Route::controller(RegisterController::class)->group(function(){
 //     Route::put('salary/updatedata/{id}', 'update')->name('salary/update-data');
 //     Route::post('salary/delete', 'salaryDelete')->name('salary/delete'); // delete record salary
 // });
+// });
+// });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
