@@ -43,7 +43,7 @@ class ResetPasswordEmail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'auth.login',
+            view: 'email',
         );
     }
 
