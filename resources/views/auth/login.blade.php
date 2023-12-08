@@ -19,7 +19,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user" action="{{ route('registernow') }}" method="POST">
+                                    <form class="user" action="{{ route('loginnow') }}" method="POST">
                                  @csrf
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
@@ -27,7 +27,7 @@
                                                 placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="login"
+                                            <input type="password" class="form-control form-control-user" name="password"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">

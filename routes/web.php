@@ -52,7 +52,7 @@ Route::controller(AdminController::class)->group(function () {
 Route::controller(LoginController::class)->group(function(){
     Route::get('/login', 'login')->name('login');
     Route::post('/loginnow', 'authenticate')->name('loginnow');
-    Route::post('/logout', 'logout')->name('logout');
+    Route::get('/logout', 'logout')->name('logout');
     Route::post('change/password', 'changePassword')->name('change/password');
 
 });
@@ -72,7 +72,3 @@ Route::controller(RegisterController::class)->group(function(){
 // });
 // });
 // });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
