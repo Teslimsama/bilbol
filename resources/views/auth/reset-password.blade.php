@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-  <div class="container">
+    <div class="container">
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -19,8 +19,10 @@
                                         <p class="mb-4">We get it, stuff happens. Just enter your password address below
                                             and we'll send you a link to reset your password!</p>
                                     </div>
+                                    <form class="user" action="{{ route('password.update') }}" method="POST">
                                         @csrf
-                                    <form class="user" action="{{ route('password.password') }}" method="POST">
+                                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                                        <input type="hidden" name="email" value="{{ old('email', $request->email) }}"required autofocus>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputpassword" aria-describedby="passwordHelp" name="password"
@@ -28,8 +30,8 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputpassword" aria-describedby="passwordHelp" name="password"
-                                                placeholder="Enter password Address...">
+                                                id="exampleInputpassword" aria-describedby="passwordHelp"
+                                                name="password_confirmation" placeholder="Enter password Address...">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Reset Password
@@ -37,10 +39,10 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="{{route('register')}}">Create an Account!</a>
+                                        <a class="small" href="{{ route('register') }}">Create an Account!</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
+                                        <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
                                     </div>
                                 </div>
                             </div>
