@@ -40,17 +40,33 @@ class PasswordResetLinkController extends Controller
             return back()->withInput($request->only('email'));
         }
 
-        // // User exists, proceed to send the password reset link
-        // $status = Password::sendResetLink($request->only('email'));
+        
+        
+        // Queue the job to send the password reset link (in other word this works if we want to send customized emails)
+        // Mail::to($user->email)->queue(new ResetPasswordEmail($user));
+        // Toastr::success(__('Password reset link will be sent shortly.'), 'Success');
+        
+        // User exists, proceed to send the password reset link
+        $status = Password::sendResetLink($request->only('email'));
+        
+        switch ($status) {
+            case Password::RESET_LINK_SENT:
+                Toastr::success(__('Password reset link sent successfully.'), 'Success');
+                break;
 
-        // // Check the status and display Toastr messages accordingly
-        // return $status == Password::RESET_LINK_SENT
-        //     ? Toastr::success(__('Password reset link sent successfully.'), 'Success')
-        //     : Toastr::error(__('Unable to send password reset link.'), 'Error');
-        // Queue the job to send the password reset link
-        Mail::to($user->email)->queue(new ResetPasswordEmail($user));
+            case Password::INVALID_USER:
+                Toastr::error(__('User with the provided email does not exist.'), 'Error');
+                break;
 
-        Toastr::success(__('Password reset link will be sent shortly.'), 'Success');
-        return back();
+            case Password::RESET_THROTTLED:
+                Toastr::error(__('Too many reset attempts. Please wait before trying again.'), 'Error');
+                break;
+
+            default:
+                Toastr::error(__('Unable to send password reset link.'), 'Error');
+                break;
+        }
+
+        return redirect('login');
     }
 }
