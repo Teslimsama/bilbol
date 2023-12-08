@@ -9,7 +9,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ResetPasswordEmail;
 class PasswordResetLinkController extends Controller
 {
     /**
@@ -39,43 +40,17 @@ class PasswordResetLinkController extends Controller
             return back()->withInput($request->only('email'));
         }
 
-        // User exists, proceed to send the password reset link
-        $status = Password::sendResetLink($request->only('email'));
+        // // User exists, proceed to send the password reset link
+        // $status = Password::sendResetLink($request->only('email'));
 
-        // Check the status and display Toastr messages accordingly
-        return $status == Password::RESET_LINK_SENT
-            ? Toastr::success(__('Password reset link sent successfully.'), 'Success')
-            : Toastr::error(__('Unable to send password reset link.'), 'Error');
+        // // Check the status and display Toastr messages accordingly
+        // return $status == Password::RESET_LINK_SENT
+        //     ? Toastr::success(__('Password reset link sent successfully.'), 'Success')
+        //     : Toastr::error(__('Unable to send password reset link.'), 'Error');
+        // Queue the job to send the password reset link
+        Mail::to($user->email)->queue(new ResetPasswordEmail($user));
+
+        Toastr::success(__('Password reset link will be sent shortly.'), 'Success');
+        return back();
     }
 }
-
-
-// use Brian2694\Toastr\Facades\Toastr;
-
-// // ...
-
-// public function store(Request $request): RedirectResponse
-// {
-//     $request->validate([
-//         'email' => ['required', 'email'],
-//     ]);
-
-//     // Check if the email exists in the database
-//     $userExists = User::where('email', $request->email)->exists();
-
-//     if (!$userExists) {
-//         // User does not exist, display Toastr error message
-//         Toastr::error('Email does not exist in the database.', 'Error');
-//         return back()->withInput($request->only('email'));
-//     }
-
-//     // Attempt to send the password reset link
-//     $status = Password::sendResetLink(
-//         $request->only('email')
-//     );
-
-//     // Check the status and display Toastr messages
-//     return $status == Password::RESET_LINK_SENT
-//         ? Toastr::success(__('Password reset link sent successfully.'), 'Success')
-//         : Toastr::error(__('Unable to send password reset link.'), 'Error');
-// }
