@@ -5,48 +5,71 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+        <h1 class="h3 mb-2 text-gray-800">Inventory List</h1>
+        {{-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
             For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
-                DataTables documentation</a>.</p>
+                DataTables documentation</a>.</p> --}}
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Inventories</h6>
             </div>
             <div class="card-body">
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Library</h3>
+                        </div>
+                        <div class="col-auto text-end float-end ms-auto download-grp">
+                            <a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i>
+                                Download</a>
+                            <a href="{{route('inventory.add')}}" class="btn btn-primary"><i
+                                    class="fas fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                            </tr>
+                            @foreach ($inventoryList as $key => $list)
+                                <tr>
+                                    <td>{{ $list->name }}</td>
+                                    <td>{{ $list->quantity }}</td>
+                                    <td>{{ $list->price }}</td>
+                                    <td>{{ $list->description }}</td>
+                                    <td>
+                                        <div class="actions">
+                                            <a href="{{ url('inventory/edit/' . $list->id) }}"
+                                                class="btn btn-sm bg-danger-light">
+                                                <i class="feather-edit"></i>
+                                            </a>
+                                            <a class="btn btn-sm bg-danger-light inventory_delete" data-bs-toggle="modal"
+                                                data-bs-target="#inventoryModal">
+                                                <i class="feather-trash-2 me-1"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -54,9 +77,8 @@
         </div>
     </div>
 @section('script')
-<!-- Page level plugins -->
+    <!-- Page level plugins -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
 @endsection
 @endsection

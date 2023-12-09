@@ -12,8 +12,4 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function forgot_password()
-    {
-        return view('auth.forgot_password');
-    }
 }

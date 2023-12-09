@@ -7,7 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use DB;
 use Auth;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;

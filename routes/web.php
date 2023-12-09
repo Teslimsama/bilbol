@@ -7,6 +7,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\RentedController;
+use App\Http\Controllers\UsersController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +22,7 @@ use App\Http\Controllers\Auth\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -40,25 +45,41 @@ Route::controller(ClientController::class)->group(function () {
     Route::get('/shop',  'shop')->name('shop');
     Route::get('/furniture',  'furniture')->name('furniture');
     Route::get('/contact',  'contact')->name('contact');
-    
 });
 
 Route::controller(AdminController::class)->group(function () {
     Route::get('/dashboard',  'dashboard')->name('dashboard');
-    // Route::get('/forgot_password',  'forgot_password')->name('forgot_password');
 });
 
-Route::controller(LoginController::class)->group(function(){
+
+Route::controller(InventoryController::class)->group(function () {
+    Route::get('/inventory',  'inventory')->name('inventory');
+    Route::get('/inventory/add',  'inventoryAdd')->name('inventory.add');
+    Route::post('/inventory/save',  'store')->name('inventory.save');
+    Route::get('/inventory/edit/{id}',  'edit')->name('inventory.edit');
+
+});
+
+Route::controller(UsersController::class)->group(function () {
+    Route::get('/users',  'users')->name('users');
+});
+
+Route::controller(RentedController::class)->group(function () {
+    Route::get('/rented',  'rented')->name('rented');
+    Route::get('/rented/add',  'rentedAdd')->name('rented.add');
+    Route::get('/rented/save',  'store');
+    Route::get('/rented/edit/{id}',  'edit')->name('rented.edit');
+});
+
+Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
     Route::post('/loginnow', 'authenticate')->name('loginnow');
     Route::get('/logout', 'logout')->name('logout');
     Route::post('change/password', 'changePassword')->name('change/password');
-
 });
-Route::controller(RegisterController::class)->group(function(){
+Route::controller(RegisterController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
     Route::post('/registernow', 'storeUser')->name('registernow');
-    
 });
 // Route::controller(SalaryController::class)->group(function () {
 //     Route::get('salary/page', 'salary')->name('salary/page');
