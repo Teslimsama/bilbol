@@ -16,13 +16,25 @@
                 <h6 class="m-0 font-weight-bold text-primary">Users</h6>
             </div>
             <div class="card-body">
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Library</h3>
+                        </div>
+                        <div class="col-auto text-end float-end ms-auto download-grp">
+                            <a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i>
+                                Download</a>
+                            <a href="{{ route('inventory.add') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Address</th>
-                                <th>Email</th>                               
+                                <th>Email</th>
                                 <th>Phone Number</th>
                                 <th>Role</th>
                                 <th>Join date</th>
@@ -33,7 +45,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Address</th>
-                                <th>Email</th>                               
+                                <th>Email</th>
                                 <th>Phone Number</th>
                                 <th>Role</th>
                                 <th>Join date</th>
@@ -48,7 +60,18 @@
                                 <td>61</td>
                                 <td>2011/04/25</td>
                                 <td>action</td>
-                                <td>action</td>
+                                <td>
+                                    <div class="actions">
+                                        <a href="{{ url('inventory/edit/' . $list->id) }}"
+                                            class="btn btn-sm bg-danger-light">
+                                            <i class="fas fa-fw fa-edit"></i>
+                                        </a>
+                                        <a class="btn btn-sm bg-danger-light delete_modal" href="#"
+                                            data-toggle="modal" data-target="#deleteModal">
+                                            <i class="fas fa-fw fa-trash me-1"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -57,9 +80,8 @@
         </div>
     </div>
 @section('script')
-<!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+    <!-- Page level plugins -->
+    <script src="{{ URL::to('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL::to('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 @endsection
 @endsection
