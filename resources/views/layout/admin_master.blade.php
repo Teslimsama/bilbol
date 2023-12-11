@@ -35,7 +35,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -47,7 +47,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('dashboard')}}">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -70,8 +70,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inventory:</h6>
-                        <a class="collapse-item" href="{{route('inventory')}}">Inventory List</a>
-                        <a class="collapse-item" href="{{route('inventory.add')}}">Inventory Add</a>
+                        <a class="collapse-item" href="{{ route('inventory') }}">Inventory List</a>
+                        <a class="collapse-item" href="{{ route('inventory.add') }}">Inventory Add</a>
                     </div>
                 </div>
             </li>
@@ -87,8 +87,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Rented Inventory:</h6>
-                        <a class="collapse-item" href="{{route('rented')}}">Rented Inventory</a>
-                        <a class="collapse-item" href="Rented-color.html">Rented Inventory Add</a> 
+                        <a class="collapse-item" href="{{ route('rented') }}">Rented Inventory</a>
+                        <a class="collapse-item" href="Rented-color.html">Rented Inventory Add</a>
                     </div>
                 </div>
             </li>
@@ -98,7 +98,7 @@
 
             <!-- Nav Item - Users -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('users')}}">
+                <a class="nav-link" href="{{ route('users') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Users</span></a>
             </li>
@@ -310,6 +310,37 @@
         </div>
     </div>
 
+    <!-- Delete Modal-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('inventory.delete') }}" method="POST">
+                        @csrf
+                        <div class="delete-wrap text-center">
+                            <div class="del-icon">
+                                <i class="feather-x-circle"></i>
+                            </div>
+                            <input type="hidden" name="id" class="e_id" value="">
+                            <h2>Sure you want to delete</h2>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{ URL::to('assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ URL::to('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -319,6 +350,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ URL::to('assets/js/sb-admin-2.min.js') }}"></script>
+    <script>
+        $(document).on('click', '.delete_modal', function() {
+            var _this = $(this).parents('tr');
+            $('.e_id').val(_this.find('.id').text());
+
+        });
+    </script>
     @yield('script')
 </body>
 

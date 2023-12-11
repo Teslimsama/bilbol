@@ -19,6 +19,33 @@ class InventoryController extends Controller
     {
         return view('admin.add_products');
     }
+    public function update(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $updateRecord = [
+                'name' => $request->product_name,
+                'description'   => $request->description,
+                'quantity'   => $request->quantity,
+                'price'   => $request->price,
+            ];
+            Inventory::where('id', $request->id)->update($updateRecord);
+
+            Toastr::success('Has been update successfully :)', 'Success');
+            DB::commit();
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('fail, update inventory  :), '  . $e->getMessage(), 'Error');
+            return redirect()->back();
+        }
+    }
+    public function edit($id)
+    {
+        $inventoryEdit = inventory::where('id', $id)->first();
+        return view('admin.edit_products', compact('inventoryEdit'));
+    }
     public function store(Request $request)
     {
         $request->validate([
@@ -29,29 +56,42 @@ class InventoryController extends Controller
 
         ]);
 
+        try {
+            DB::beginTransaction();
+
+            $Inventory = new Inventory;
+            $Inventory->name = $request->product_name;
+            $Inventory->description   = $request->description;
+            $Inventory->quantity   = $request->quantity;
+            $Inventory->price   = $request->price;
+            $Inventory->save();
+
+            DB::commit();
+            Toastr::success('Transaction completed successfully.', 'Success');
+            // return view('admin.add_products');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Toastr::error('Transaction failed: ' . $e->getMessage(), 'Error');
+            return redirect()->back();
+        }
+    }
+    public function delete(Request $request)
+    {
         DB::beginTransaction();
         try {
-            if (!empty($request->product_name)) {
-                // $Inventory = new Inventory;
-                // $Inventory->name = $request->product_name;
-                // $Inventory->description   = $request->description;
-                // $Inventory->quantity   = $request->quantity;
-                // $Inventory->price   = $request->price;
-                // $Inventory->save();
-                // dd($request->date);
-                
-                // Toastr::success('Has been add successfully :)', 'Success');
-                // DB::commit();
-                dd('fuck');
+
+            if (!empty($request->id)) {
+                inventory::destroy($request->id);
+                DB::commit();
+                Toastr::success('inventory deleted successfully :)', 'Success');
+                return redirect()->back();
             }
-
-            // return view('admin.add_products');
         } catch (\Exception $e) {
-            // DB::rollback();
-            // Toastr::error('fail, Add new Inventory  :)', 'Error');
-            // return redirect()->back();
+            DB::rollback();
+            Toastr::error('inventory deleted fail :)', 'Error');
+            return redirect()->back();
         }
-
-        // return view('admin.add_products');
     }
+
 }
