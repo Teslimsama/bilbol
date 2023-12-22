@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('renteds', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('sales_id');
-            $table->string('user_id');
-            $table->string('quantity');
-            $table->string('rented_date');
-            $table->string('return_date');
+            $table->integer('user_id');
+            $table->string('tx_ref');
+            $table->string('txid');
+            $table->string('status');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

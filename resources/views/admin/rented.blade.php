@@ -11,18 +11,17 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Rented Inventories</h6>
-                <h6 class="m-0 font-weight-bold text-primary">Rented Inventories</h6>
             </div>
             <div class="card-body">
                 <div class="page-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="page-title">Library</h3>
+                            <h3 class="page-title">Rented Inventory</h3>
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp">
                             <a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i>
                                 Download</a>
-                            <a href="{{ route('inventory.add') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                            <a href="{{ route('rented.add') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
                         </div>
                     </div>
                 </div>
@@ -30,11 +29,11 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Address</th>
                                 <th>Email</th>
                                 <th>Phone Number</th>
-                                <th>Details</th>
                                 <th>Rented date</th>
                                 <th>Return date</th>
                                 <th>Amount</th>
@@ -43,11 +42,11 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Address</th>
                                 <th>Email</th>
                                 <th>Phone Number</th>
-                                <th>Details</th>
                                 <th>Rented date</th>
                                 <th>Return date</th>
                                 <th>Amount</th>
@@ -55,37 +54,54 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                                <td>
-                                  <div class="actions">
-                                            <a href="{{ url('inventory/edit/' . $list->id) }}"
+                            @foreach ($renteds as $rented)
+                                <tr>
+                                    <td hidden class="id">{{ $rented->id }}</td>
+                                    <td>{{ 1000 + $rented->id }}</td>
+                                    <td>{{ $rented->user->name }}</td>
+                                    <td>{{ $rented->user->address }}</td>
+                                    <td>{{ $rented->user->email }}</td>
+                                    <td>{{ $rented->user->phone_number }}</td>
+                                    <td>
+                                        @if ($rented->payments)
+                                            {{ $rented->payments->rented_date }}
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($rented->payments)
+                                            {{ $rented->payments->return_date }}
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($rented->payments)
+                                            ${{ $rented->payments->amount }}
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="actions">
+                                            <a href="{{ url('rented/edit/' . $rented->id) }}"
                                                 class="btn btn-sm bg-danger-light">
                                                 <i class="fas fa-fw fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-sm bg-danger-light delete_modal" href="#" data-toggle="modal"
-                                                data-target="#deleteModal">
-                                            <i class="fas fa-fw fa-trash me-1"></i>
+                                            <a class="btn btn-sm bg-danger-light delete_modal" href="#"
+                                                data-toggle="modal" data-target="#deleteModal">
+                                                <i class="fas fa-fw fa-trash me-1"></i>
                                             </a>
                                         </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
     </div>
-@section('script')
-    <!-- Page level plugins -->
-    <script src="{{ URL::to('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ URL::to('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-@endsection
 @endsection

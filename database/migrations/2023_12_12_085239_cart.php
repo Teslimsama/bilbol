@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('renteds', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->string('sales_id');
-            $table->string('user_id');
-            $table->string('quantity');
-            $table->string('rented_date');
-            $table->string('return_date');
+            $table->integer('product_id');
+            $table->integer('user_id');
+            $table->integer('quantity');
+            $table->timestamp('rented_date')->nullable();
+            $table->timestamp('return_date')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
