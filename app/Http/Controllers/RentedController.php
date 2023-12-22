@@ -79,8 +79,8 @@ class RentedController extends Controller
             $payment = new Payment(); // Follow Laravel conventions for model names
             $payment->qty = $request->qty[$key];
             $payment->price = $request->price[$key];
-            $payment->tx_ref = $txRef;   
-            $payment->tx_id = $txId;   
+            $payment->tx_ref = $txRef;
+            $payment->tx_id = $txId;
             $payment->dis = $request->dis[$key];
             $payment->rented_date = $request->rented_date[$key];
             $payment->return_date = $request->return_date[$key];
@@ -89,8 +89,8 @@ class RentedController extends Controller
             $payment->rented_id = $rented->id;
             $payment->save();
         }
-
-        return redirect('rented/edit/' . $rented->id)->with('message', 'Rented item created successfully');
+        Toastr::success('Rented Inventory Added Successfully :)', 'Success');
+        return redirect('rented/edit/' . $rented->id);
     }
 
     public function findPrice(Request $request)
@@ -161,7 +161,7 @@ class RentedController extends Controller
             $payment->qty = $request->qty[$key];
             $payment->price = $request->price[$key];
             $payment->tx_ref = $txRef;
-            $payment->tx_id = $txId;   
+            $payment->tx_id = $txId;
             $payment->dis = $request->dis[$key];
             $payment->rented_date = $request->rented_date[$key];
             $payment->return_date = $request->return_date[$key];
@@ -170,8 +170,8 @@ class RentedController extends Controller
             $payment->rented_id = $rented->id;
             $payment->save();
         }
-
-        return redirect('/rented/edit/' . $rented->id)->with('message', 'rented created Successfully');
+        Toastr::success('Rented Inventory Updated Successfully :)', 'Success');
+        return redirect('/rented/edit/' . $rented->id);
     }
 
     /**
@@ -181,11 +181,13 @@ class RentedController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->id;
         Payment::where('rented_id', $id)->delete();
         $rented = Rented::findOrFail($id); // Follow Laravel conventions for model names
         $rented->delete();
+        Toastr::success('Rented Inventory Deleted successfully :)', 'Success');
         return redirect()->route('admin.rented'); // Adjust the route based on your application's logic
     }
 }

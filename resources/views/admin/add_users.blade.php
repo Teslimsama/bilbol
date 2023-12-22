@@ -5,10 +5,10 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="page-title">Add Books</h3>
+                    <h3 class="page-title">Add User</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('inventory') }}">Inventory</a></li>
-                        <li class="breadcrumb-item active">Edit Eqipments</li>
+                        <li class="breadcrumb-item"><a href="{{ route('users') }}">User</a></li>
+                        <li class="breadcrumb-item active">Add User</li>
                     </ul>
                 </div>
             </div>
@@ -19,49 +19,39 @@
                 <!-- Basic Card Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Edit Product</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Add User</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('inventory.update') }}" method="POST">
+                        <form action="{{ route('users.save') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-12">
-                                    <h5 class="form-title"><span>Product Information</span></h5>
+                                    <h5 class="form-title"><span>User Information</span></h5>
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
-                                        <label>Product ID <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control" name="id"
-                                            value="{{ $inventoryEdit->id }}" readonly>
+                                        <label>User Name <span class="login-danger">*</span></label>
+                                        <input type="text" name="user_name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
-                                        <label>Product Name <span class="login-danger">*</span></label>
-                                        <input type="text" name="product_name" value="{{ $inventoryEdit->name }}"
-                                            class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-4">
-                                    <div class="form-group local-forms">
-                                        <label>Price (₦)<span class="login-danger">*</span></label>
-                                        <input type="text" name="price" value="{{ $inventoryEdit->payments_price }}"
-                                            class="form-control">
+                                        <label>Phone Number <span class="login-danger">*</span></label>
+                                        <input type="tel" name="phone_number" class="form-control">
 
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
-                                        <label>Quantity <span class="login-danger">*</span></label>
-                                        <input type="number" name="quantity" value="{{ $inventoryEdit->quantity }}"
-                                            class="form-control">
+                                        <label>Email <span class="login-danger">*</span></label>
+                                        <input type="email" name="email" class="form-control">
 
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
-                                        <label>Description <span class="login-danger">*</span></label>
-                                        <textarea name="description" id="description" class="form-control">{{ $inventoryEdit->description }}</textarea>
+                                        <label>Address <span class="login-danger">*</span></label>
+                                        <textarea name="address" id="address" class="form-control"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">

@@ -79,13 +79,16 @@ Route::middleware('auth')->group(function () {
         Route::post('/delete', [InventoryController::class, 'delete'])->name('inventory.delete');
     });
 
-    // Route::resource('rented', 'RentedController');
-
     
     Route::get('/findPricePurchase', 'PurchaseController@findPricePurchase')->name('findPricePurchase');
 
     Route::controller(UsersController::class)->group(function () {
         Route::get('/users',  'users')->name('users');
+        Route::post('/users/save',  'store')->name('users.save');
+        Route::get('/users/add',  'create')->name('users.add');
+        Route::post('/users/update',  'update')->name('users.update');
+        Route::post('/users/delete',  'delete')->name('users.delete');
+        Route::get('/users/edit/{id}',  'edit')->name('users.edit');
     });
     Route::controller(RentedController::class)->group(function () {
         Route::get('/rented',  'index')->name('rented');
@@ -95,6 +98,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/rented/update',  'update')->name('rented.update');
         Route::get('/rented/edit/{id}',  'edit')->name('rented.edit');
         // Route::get('/getProductUser', 'getProductUser');
+        Route::post('/rented/delete',  'destroy')->name('rented.delete');
         Route::get('/findPrice', 'findPrice')->name('findPrice');
     });
 });

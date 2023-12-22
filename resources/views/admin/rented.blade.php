@@ -58,31 +58,13 @@
                                 <tr>
                                     <td hidden class="id">{{ $rented->id }}</td>
                                     <td>{{ 1000 + $rented->id }}</td>
-                                    <td>{{ $rented->user->name }}</td>
-                                    <td>{{ $rented->user->address }}</td>
-                                    <td>{{ $rented->user->email }}</td>
-                                    <td>{{ $rented->user->phone_number }}</td>
-                                    <td>
-                                        @if ($rented->payments)
-                                            {{ $rented->payments->rented_date }}
-                                        @else
-                                            N/A
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($rented->payments)
-                                            {{ $rented->payments->return_date }}
-                                        @else
-                                            N/A
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($rented->payments)
-                                            ${{ $rented->payments->amount }}
-                                        @else
-                                            N/A
-                                        @endif
-                                    </td>
+                                    <td>{{ $rented->user ? $rented->user->name : 'N/A' }}</td>
+                                    <td>{{ $rented->user ? $rented->user->address : 'N/A' }}</td>
+                                    <td>{{ $rented->user ? $rented->user->email : 'N/A' }}</td>
+                                    <td>{{ $rented->user ? $rented->user->phone_number : 'N/A' }}</td>
+                                    <td>{{ $rented->payments ? $rented->payments->rented_date : 'N/A' }}</td>
+                                    <td>{{ $rented->payments ? $rented->payments->return_date : 'N/A' }}</td>
+                                    <td>₦{{ $rented->payments ? $rented->payments->amount : 'N/A' }}</td>
                                     <td>
                                         <div class="actions">
                                             <a href="{{ url('rented/edit/' . $rented->id) }}"
@@ -98,10 +80,14 @@
                                 </tr>
                             @endforeach
                         </tbody>
+
                     </table>
 
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('delete')
+    {{ route('rented.delete') }}
 @endsection
