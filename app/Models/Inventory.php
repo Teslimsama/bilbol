@@ -10,10 +10,12 @@ class Inventory extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'description',
+        'serial_number',
+        'model',
+        'category_id',
+        'payments_price',
         'quantity',
-        'price',
-        
+        'image', // Assuming you have an 'image' column in your 'inventories' table
     ];
     public function renteds()
     {
@@ -21,20 +23,12 @@ class Inventory extends Model
     }
     public function category()
     {
-        return $this->belongsTo('App\Category');
-    }
-    public function unit()
-    {
-        return $this->belongsTo('App\Unit');
-    }
-    public function tax()
-    {
-        return $this->belongsTo('App\Tax');
+        return $this->belongsTo(Category::class);
     }
 
     public function additionalProduct()
     {
-        return $this->hasMany('App\ProductSupplier');
+        return $this->hasMany(ProductSupplier::class);
     }
 
     public function payments()
