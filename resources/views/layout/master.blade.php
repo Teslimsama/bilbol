@@ -69,6 +69,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('contact') }}">Contact us</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('checkout') }}">Checkout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('cart') }}">Cart</a>
+                            </li>
                         </ul>
                         <div class="user_option">
                             <a href="">

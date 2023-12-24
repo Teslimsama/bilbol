@@ -39,12 +39,20 @@ Route::middleware('guest')->group(function () {
     Route::post('reset_password', [NewPasswordController::class, 'store'])
         ->name('password.update');
 
+    Route::patch('update-cart', [RentedController::class, 'update'])->name('update_cart');
+
+    Route::get('add-to-cart/{id}', [RentedController::class, 'addToCart'])->name('add_to_cart');
+
+    Route::delete('remove-from-cart', [RentedController::class, 'remove'])->name('remove_from_cart');
+
     Route::controller(ClientController::class)->group(function () {
         Route::get('/',  'index')->name('home');
         Route::get('/about',  'about')->name('about');
         Route::get('/shop',  'shop')->name('shop');
         Route::get('/furniture',  'furniture')->name('furniture');
         Route::get('/contact',  'contact')->name('contact');
+        Route::get('/cart',  'cart')->name('cart');
+        Route::get('/checkout',  'checkout')->name('checkout');
     });
     Route::controller(LoginController::class)->group(function () {
         Route::get('/login', 'login')->name('login');
@@ -71,14 +79,27 @@ Route::middleware('auth')->group(function () {
         Route::post('/delete', [InventoryController::class, 'delete'])->name('inventory.delete');
     });
 
+    
+    Route::get('/findPricePurchase', 'PurchaseController@findPricePurchase')->name('findPricePurchase');
+
     Route::controller(UsersController::class)->group(function () {
         Route::get('/users',  'users')->name('users');
+        Route::post('/users/save',  'store')->name('users.save');
+        Route::get('/users/add',  'create')->name('users.add');
+        Route::post('/users/update',  'update')->name('users.update');
+        Route::post('/users/delete',  'delete')->name('users.delete');
+        Route::get('/users/edit/{id}',  'edit')->name('users.edit');
     });
     Route::controller(RentedController::class)->group(function () {
-        Route::get('/rented',  'rented')->name('rented');
+        Route::get('/rented',  'index')->name('rented');
         Route::get('/rented/add',  'rentedAdd')->name('rented.add');
-        Route::get('/rented/save',  'store');
+        Route::post('/rented/save',  'store')->name('rented.save');
+        Route::get('/rented/show',  'show')->name('rented.show');
+        Route::post('/rented/update',  'update')->name('rented.update');
         Route::get('/rented/edit/{id}',  'edit')->name('rented.edit');
+        // Route::get('/getProductUser', 'getProductUser');
+        Route::post('/rented/delete',  'destroy')->name('rented.delete');
+        Route::get('/findPrice', 'findPrice')->name('findPrice');
     });
 });
 

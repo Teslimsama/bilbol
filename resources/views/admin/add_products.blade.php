@@ -30,19 +30,13 @@
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
-                                        <label>Product ID <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-4">
-                                    <div class="form-group local-forms">
                                         <label>Product Name <span class="login-danger">*</span></label>
                                         <input type="text" name="product_name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
-                                        <label>Price <span class="login-danger">*</span></label>
+                                        <label>Price (₦)<span class="login-danger">*</span></label>
                                         <input type="number" name="price" class="form-control">
 
                                     </div>

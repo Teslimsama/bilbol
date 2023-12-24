@@ -54,7 +54,7 @@
                                     <td hidden class="id">{{ $list->id }}</td>
                                     <td>{{ $list->name }}</td>
                                     <td>{{ $list->quantity }}</td>
-                                    <td>{{ $list->price }}</td>
+                                    <td>₦{{ $list->payments_price }}</td>
                                     <td>{{ $list->description }}</td>
                                     <td>
                                         <div class="actions">
@@ -76,7 +76,9 @@
             </div>
         </div>
     </div>
-
+@section('delete')
+{{route('inventory.delete')}}
+@endsection
 @section('script')
     
     <script src="{{ URL::to('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>

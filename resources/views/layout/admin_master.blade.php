@@ -88,7 +88,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Rented Inventory:</h6>
                         <a class="collapse-item" href="{{ route('rented') }}">Rented Inventory</a>
-                        <a class="collapse-item" href="Rented-color.html">Rented Inventory Add</a>
+                        <a class="collapse-item" href="{{route('rented.add')}}">Rented Inventory Add</a>
                     </div>
                 </div>
             </li>
@@ -322,7 +322,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('inventory.delete') }}" method="POST">
+                    <form action="@yield('delete')" method="POST">
+                    {{-- <form action="{{ route('inventory.delete') }}" method="POST"> --}}
                         @csrf
                         <div class="delete-wrap text-center">
                             <div class="del-icon">
