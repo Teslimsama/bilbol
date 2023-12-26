@@ -94,7 +94,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/rented',  'index')->name('rented');
         Route::get('/rented/add',  'rentedAdd')->name('rented.add');
         Route::post('/rented/save',  'store')->name('rented.save');
-        Route::get('/rented/show',  'show')->name('rented.show');
+        Route::get('/rented/show/{id}',  'show')->name('rented.show');
         Route::post('/rented/update',  'update')->name('rented.update');
         Route::get('/rented/edit/{id}',  'edit')->name('rented.edit');
         // Route::get('/getProductUser', 'getProductUser');

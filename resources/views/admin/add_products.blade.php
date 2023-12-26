@@ -93,7 +93,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">Selling Price</label>
+                                    <label class="control-label">Selling Price (₦)*</label>
                                     <input name="payments_price"
                                         class="form-control @error('payments_price') is-invalid @enderror" type="number"
                                         placeholder="Enter Selling Price">
