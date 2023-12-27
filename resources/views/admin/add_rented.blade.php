@@ -68,7 +68,7 @@
                                         <td></td>
                                         <td></td>
                                         <td><b>Total</b></td>
-                                        <td><b class="total"></b></td>
+                                        <td>₦<b class="total"></b></td>
                                         <td></td>
                                     </tr>
                                 </tfoot>

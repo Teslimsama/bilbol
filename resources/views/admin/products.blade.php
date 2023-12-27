@@ -6,9 +6,6 @@
 
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Inventory List</h1>
-        {{-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
-                DataTables documentation</a>.</p> --}}
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -22,8 +19,7 @@
                             <h3 class="page-title">Inventory</h3>
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp">
-                            <a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i>
-                                Download</a>
+
                             <a href="{{ route('inventory.add') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
                         </div>
                     </div>
@@ -62,9 +58,9 @@
                                                 class="btn btn-sm bg-danger-light">
                                                 <i class="fas fa-fw fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-sm bg-danger-light delete_modal" href="#" data-toggle="modal"
-                                                data-target="#deleteModal">
-                                            <i class="fas fa-fw fa-trash me-1"></i>
+                                            <a class="btn btn-sm bg-danger-light delete_modal" href="#"
+                                                data-toggle="modal" data-target="#deleteModal">
+                                                <i class="fas fa-fw fa-trash me-1"></i>
                                             </a>
                                         </div>
                                     </td>
@@ -77,10 +73,9 @@
         </div>
     </div>
 @section('delete')
-{{route('inventory.delete')}}
+    {{ route('inventory.delete') }}
 @endsection
 @section('script')
-    
     <script src="{{ URL::to('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::to('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 @endsection

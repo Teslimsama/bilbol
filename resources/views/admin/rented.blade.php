@@ -19,8 +19,6 @@
                             <h3 class="page-title">Rented Inventory</h3>
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp">
-                            <a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i>
-                                Download</a>
                             <a href="{{ route('rented.add') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
                         </div>
                     </div>
@@ -75,6 +73,8 @@
                                                 data-toggle="modal" data-target="#deleteModal">
                                                 <i class="fas fa-fw fa-trash me-1"></i>
                                             </a>
+                                            <a class="btn btn-primary btn-sm" href="{{ url('rented/show/' . $rented->id) }}">
+                                                <i class="fas fa-fw fa-eye" ></i></a>
                                         </div>
                                     </td>
                                 </tr>

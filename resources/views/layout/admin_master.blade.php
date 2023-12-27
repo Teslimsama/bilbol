@@ -64,7 +64,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-box"></i>
                     <span>Inventory</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -80,7 +80,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRented"
                     aria-expanded="true" aria-controls="collapseRented">
-                    <i class="fas fa-fw fa-wrench"></i>
+                    <i class="fas fa-fw fa-archive"></i>
                     <span>Rented Inventory</span>
                 </a>
                 <div id="collapseRented" class="collapse" aria-labelledby="headingRented"
@@ -99,8 +99,14 @@
             <!-- Nav Item - Users -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('users') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-user"></i>
                     <span>Users</span></a>
+            </li>
+            <!-- Nav Item - category -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('category') }}">
+                    <i class="fas fa-fw fa-tags"></i>
+                    <span>Category</span></a>
             </li>
 
             <!-- Divider -->
@@ -273,7 +279,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                       <span>Copyright &copy; Bilbol {{ date('Y') }}</span>
                     </div>
                 </div>
             </footer>
@@ -304,7 +310,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>
                 </div>
             </div>
         </div>
@@ -316,7 +322,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    {{-- <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5> --}}
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -335,7 +341,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Yes</button>
+                        <button type="submit" class="btn btn-danger">Yes</button>
                     </form>
                 </div>
             </div>
