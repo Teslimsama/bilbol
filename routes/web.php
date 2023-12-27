@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\RentedController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +27,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::middleware('guest')->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('/forgot_password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
@@ -46,6 +48,7 @@ Route::middleware('guest')->group(function () {
     Route::delete('remove-from-cart', [RentedController::class, 'remove'])->name('remove_from_cart');
 
     Route::controller(ClientController::class)->group(function () {
+        Route::get('/index',  'index')->name('index');
         Route::get('/',  'index')->name('home');
         Route::get('/about',  'about')->name('about');
         Route::get('/shop',  'shop')->name('shop');
@@ -57,7 +60,6 @@ Route::middleware('guest')->group(function () {
     Route::controller(LoginController::class)->group(function () {
         Route::get('/login', 'login')->name('login');
         Route::post('/loginnow', 'authenticate')->name('loginnow');
-        Route::get('/logout', 'logout')->name('logout');
         Route::post('change/password', 'changePassword')->name('change/password');
     });
     Route::controller(RegisterController::class)->group(function () {
@@ -70,6 +72,9 @@ Route::middleware('auth')->group(function () {
     Route::controller(AdminController::class)->group(function () {
         Route::get('/dashboard',  'dashboard')->name('dashboard');
     });
+    Route::controller(LoginController::class)->group(function () {
+        Route::get('/logout', 'logout')->name('logout');
+    });
     Route::prefix('inventory')->group(function () {
         Route::get('/', [InventoryController::class, 'inventory'])->name('inventory');
         Route::get('/add', [InventoryController::class, 'inventoryAdd'])->name('inventory.add');
@@ -79,7 +84,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/delete', [InventoryController::class, 'delete'])->name('inventory.delete');
     });
 
-    
+
     Route::get('/findPricePurchase', 'PurchaseController@findPricePurchase')->name('findPricePurchase');
 
     Route::controller(UsersController::class)->group(function () {
@@ -89,6 +94,14 @@ Route::middleware('auth')->group(function () {
         Route::post('/users/update',  'update')->name('users.update');
         Route::post('/users/delete',  'delete')->name('users.delete');
         Route::get('/users/edit/{id}',  'edit')->name('users.edit');
+    });
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/category',  'index')->name('category');
+        Route::post('/category/save',  'store')->name('category.save');
+        Route::get('/category/add',  'create')->name('category.add');
+        Route::post('/category/update',  'update')->name('category.update');
+        Route::post('/category/delete',  'delete')->name('category.delete');
+        Route::get('/category/edit/{id}', 'edit')->name('category.edit');
     });
     Route::controller(RentedController::class)->group(function () {
         Route::get('/rented',  'index')->name('rented');
@@ -104,4 +117,3 @@ Route::middleware('auth')->group(function () {
 });
 
 // Other routes...
-

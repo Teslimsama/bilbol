@@ -12,7 +12,7 @@
                     <li class="breadcrumb-item"><a href="#">Rented Invoice</a></li>
                 </ul>
             </div>
-            <div class="row important-part">
+            <div class="row important-part mt-5">
                 <div class="col-md-12">
                     <div class="tile">
                         <section class="rented">
@@ -97,8 +97,8 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="row d-print-none mx-2">
-                                <div class="col-12 text-right">
+                            <div class="row d-print-none">
+                                <div class="col-12 text-right m-3 ">
                                     <a class="btn btn-primary" href="javascript:void(0);" onclick="printrented();"><i class="fa fa-print"></i> Print</a>
                                 <a href="#"href="javascript:void(0);" onclick="downloadPDF();" class="btn btn-primary me-2"><i class="fas fa-download"></i>
                                 Download</a>
