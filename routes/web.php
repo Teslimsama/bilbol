@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\RentedController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -87,6 +88,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/findPricePurchase', 'PurchaseController@findPricePurchase')->name('findPricePurchase');
 
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/profile',  'profile')->name('profile');
+        Route::post('/profile/update',  'updateProfile')->name('profile.update');
+        Route::post('/profile/change',  'updatePassword')->name('password.change');
+    });
     Route::controller(UsersController::class)->group(function () {
         Route::get('/users',  'users')->name('users');
         Route::post('/users/save',  'store')->name('users.save');
