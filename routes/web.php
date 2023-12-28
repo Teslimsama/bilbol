@@ -85,7 +85,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/delete', [InventoryController::class, 'delete'])->name('inventory.delete');
     });
 
-
+    Route::get('/monthly-earnings-data', [AdminController::class, 'monthlyEarningsData']);
     Route::get('/findPricePurchase', 'PurchaseController@findPricePurchase')->name('findPricePurchase');
 
     Route::controller(ProfileController::class)->group(function () {
