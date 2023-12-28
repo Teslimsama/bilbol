@@ -25,20 +25,21 @@ class RegisterController extends Controller
             'password'  => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required',
         ]);
-
+       
         $dt       = Carbon::now();
         $todayDate = $dt->toDayDateTimeString();
-        $name = $request->firstname . " " . $request->lastname;
-        $image = 'noimage';
         $role = 'Renter';
+        $image = 'noimage.jpeg';
         $users = new User();
-        $users->name = $name;
+        $users->firstname = $request->firstname;
+        $users->lastname = $request->lastname;
         $users->image = $image;
         $users->email = $request->email;
         $users->join_date = $todayDate;
         $users->password = Hash::make($request->password);
         $users->phone_number = $request->phone_number;
         $users->role_name = $role;
+
         $users->save();
         // Correct way to call the success method
         // Toastr::success('Your success message', 'Success');
