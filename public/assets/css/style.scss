@@ -1,15 +1,15 @@
 $white: #ffffff;
 $black: #252525;
-$primary1: #24d278;
+$primary1: #6A704C;
 
 
 @mixin main-font {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'pacifico';
 
 }
 
 @mixin second-font {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'pacifico';
 }
 
 
@@ -36,8 +36,8 @@ $primary1: #24d278;
 
 body {
   @include main-font();
-  color: #0c0c0c;
-  background-color: #ffffff;
+  color: #EDE1D1;
+  background-color:#EDE1D1;
 }
 
 .layout_padding {
@@ -93,7 +93,7 @@ body {
 /*header section*/
 .hero_area {
   height: 100vh;
-  background-image: url(../images/hero-bg.jpg);
+  // background-image: url(../images/hero-bg.jpg);
   background-size: cover;
   position: relative;
   background-repeat: no-repeat;
@@ -106,7 +106,7 @@ body {
     right: 0;
     width: 45%;
     height: 100%;
-    background-image: url(../images/hero-side-bg.png);
+    background-color:#EDE1D1 ;
     background-size: cover;
   }
 }
@@ -480,7 +480,7 @@ a:focus {
     align-items: center;
   }
 
-  .detail-box {
+  .z-box {
 
     p {
       margin-top: 20px;
@@ -815,7 +815,7 @@ a:focus {
 
 // info section
 .info_section {
-  background-color: #0f1521;
+  background-color: #6A704C;
   color: $white;
 
   .info_logo {
