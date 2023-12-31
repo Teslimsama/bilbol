@@ -42,8 +42,8 @@
         <header class="header_section">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-lg custom_nav-container">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="assets/images/logo.png" alt="" />
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        <img src="assets/images/png/logo-no-background.png" alt="" />
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
