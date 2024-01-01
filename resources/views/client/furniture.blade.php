@@ -1,4 +1,5 @@
 @extends('layout.master')
+@section('title', 'funiture | ')
 @section('content')
     <!-- trending section -->
 

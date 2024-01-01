@@ -1,4 +1,5 @@
 @extends('layout.admin_master')
+@section('title', 'Products | ')
 @section('content')
     {{-- stuffs --}}
     <!-- Begin Page Content -->

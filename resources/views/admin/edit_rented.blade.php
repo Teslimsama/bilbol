@@ -1,4 +1,5 @@
 @extends('layout.admin_master')
+@section('title', 'Edit Rented | ')
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">

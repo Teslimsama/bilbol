@@ -1,4 +1,5 @@
 @extends('layout.master')
+@section('title', 'Shop | ')
 @section('content')
     <!-- brand section -->
 

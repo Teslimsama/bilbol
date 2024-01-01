@@ -45,7 +45,7 @@ body {
 .heading_container h2 {
   color: #252525;
   position: relative;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'pacifico';
 }
 
 .heading_container h2::before {

@@ -1,4 +1,5 @@
 @extends('layout.master')
+@section('title', 'Checkout | ')
 @section('content')
     {{-- stuffs --}}
     <style>

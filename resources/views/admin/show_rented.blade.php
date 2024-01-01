@@ -1,4 +1,5 @@
 @extends('layout.admin_master')
+@section('title', 'Show Rented | ')
 @section('content')
     <div class="container-fluid">
         <main class="app-content">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <!-- Basic -->
@@ -8,12 +8,46 @@
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Site Metas -->
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="description"
+        content="Discover a one-stop solution for all your event needs at Bilbol Kitchen. We specialize in providing top-notch equipment rentals for cooking and events, ensuring you have the tools you need to make your celebration a success. From elegant decorations that set the ambiance to professional catering services that delight the palate, our team excels in creating memorable experiences. Entrust us with your event management, and watch as we turn your vision into reality. With our culinary expertise, we also offer event cooking services, crafting delectable dishes that leave a lasting impression on your guests. Elevate your events with Bilbol Kitchen – where every detail matters, and every moment is unforgettable.">
+    <meta name="author" content="Bolaji Teslim Olabode">
+    <meta name="keywords"
+        content="event equipment rental, decorations, catering services, event management, event planning, event cooking, culinary services, party supplies, celebration essentials, catering equipment, event coordination, professional catering, event logistics, party planning, event services, celebration management">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-57x57.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-114x114.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-72x72.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-144x144.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-60x60.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-120x120.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-76x76.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-152x152.png') }}" />
+    <link rel="icon" type="image/png') }}" href="{{ URL::to('assets/images/favicon/favicon-196x196.png') }}"
+        sizes="196x196" />
+    <link rel="icon" type="image/png') }}" href="{{ URL::to('assets/images/favicon/favicon-96x96.png') }}"
+        sizes="96x96" />
+    <link rel="icon" type="image/png') }}" href="{{ URL::to('assets/images/favicon/favicon-32x32.png') }}"
+        sizes="32x32" />
+    <link rel="icon" type="image/png') }}" href="{{ URL::to('assets/images/favicon/favicon-16x16.png') }}"
+        sizes="16x16" />
+    <link rel="icon" type="image/png') }}" href="{{ URL::to('assets/images/favicon/favicon-128.png') }}"
+        sizes="128x128" />
+    <meta name="application-name" content="Bilbol Kitchen" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="{{ URL::to('assets/images/favicon/mstile-144x144.png') }}" />
+    <meta name="msapplication-square70x70logo" content="{{ URL::to('assets/images/favicon/mstile-70x70.png') }}" />
+    <meta name="msapplication-square150x150logo" content="{{ URL::to('assets/images/favicon/mstile-150x150.png') }}" />
+    <meta name="msapplication-wide310x150logo" content="{{ URL::to('assets/images/favicon/mstile-310x150.png') }}" />
+    <meta name="msapplication-square310x310logo" content="{{ URL::to('assets/images/favicon/mstile-310x310.png') }}" />
 
-    <title>Digitf</title>
-
+    <title>@yield('title') Bilbol Kitchen</title>
     <!-- slider stylesheet -->
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />

@@ -1,4 +1,5 @@
 @extends('layout.master')
+@section('title', 'Home | ')
 @section('content')
     <!-- slider section -->
     <section class="slider_section ">

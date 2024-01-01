@@ -1,4 +1,6 @@
 @extends('layout.admin_master')
+@section('title', 'Users | ')
+
 @section('content')
     {{-- stuffs --}}
     <!-- Begin Page Content -->

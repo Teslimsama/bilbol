@@ -1,4 +1,5 @@
 @extends('layout.master')
+@section('title', 'Cart | ')
 @section('content')
     <style>
         .cart-product-imitation {

@@ -6,10 +6,46 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description"
+        content="Discover a one-stop solution for all your event needs at Bilbol Kitchen. We specialize in providing top-notch equipment rentals for cooking and events, ensuring you have the tools you need to make your celebration a success. From elegant decorations that set the ambiance to professional catering services that delight the palate, our team excels in creating memorable experiences. Entrust us with your event management, and watch as we turn your vision into reality. With our culinary expertise, we also offer event cooking services, crafting delectable dishes that leave a lasting impression on your guests. Elevate your events with Bilbol Kitchen – where every detail matters, and every moment is unforgettable.">
+    <meta name="author" content="Bolaji Teslim Olabode">
+    <meta name="keywords"
+        content="event equipment rental, decorations, catering services, event management, event planning, event cooking, culinary services, party supplies, celebration essentials, catering equipment, event coordination, professional catering, event logistics, party planning, event services, celebration management">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-57x57.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-114x114.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-72x72.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-144x144.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-60x60.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-120x120.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-76x76.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152"
+        href="{{ URL::to('assets/images/favicon/apple-touch-icon-152x152.png') }}" />
+    <link rel="icon" type="image/png') }}" href="{{ URL::to('assets/images/favicon/favicon-196x196.png') }}"
+        sizes="196x196" />
+    <link rel="icon" type="image/png') }}" href="{{ URL::to('assets/images/favicon/favicon-96x96.png') }}"
+        sizes="96x96" />
+    <link rel="icon" type="image/png') }}" href="{{ URL::to('assets/images/favicon/favicon-32x32.png') }}"
+        sizes="32x32" />
+    <link rel="icon" type="image/png') }}" href="{{ URL::to('assets/images/favicon/favicon-16x16.png') }}"
+        sizes="16x16" />
+    <link rel="icon" type="image/png') }}" href="{{ URL::to('assets/images/favicon/favicon-128.png') }}"
+        sizes="128x128" />
+    <meta name="application-name" content="Bilbol Kitchen" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="{{ URL::to('assets/images/favicon/mstile-144x144.png') }}" />
+    <meta name="msapplication-square70x70logo" content="{{ URL::to('assets/images/favicon/mstile-70x70.png') }}" />
+    <meta name="msapplication-square150x150logo" content="{{ URL::to('assets/images/favicon/mstile-150x150.png') }}" />
+    <meta name="msapplication-wide310x150logo" content="{{ URL::to('assets/images/favicon/mstile-310x150.png') }}" />
+    <meta name="msapplication-square310x310logo" content="{{ URL::to('assets/images/favicon/mstile-310x310.png') }}" />
 
-    <title>SB Admin 2 - Blank</title>
+    <title>@yield('title') Bilbol Kitchen</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ URL::to('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -89,7 +125,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Rented Inventory:</h6>
                         <a class="collapse-item" href="{{ route('rented') }}">Rented Inventory</a>
-                        <a class="collapse-item" href="{{route('rented.add')}}">Rented Inventory Add</a>
+                        <a class="collapse-item" href="{{ route('rented.add') }}">Rented Inventory Add</a>
                     </div>
                 </div>
             </li>
@@ -135,24 +171,22 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                   
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                      
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->firstname . " " . Auth::user()->lastname }}</span>
-                                <img class="img-profile rounded-circle" src="{{ URL::to('assets/images/admin/'.  Auth::user()->image) }}">
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="{{ URL::to('assets/images/admin/' . Auth::user()->image) }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{route('profile')}}">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -183,7 +217,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                       <span>Copyright &copy; Bilbol {{ date('Y') }}</span>
+                        <span>Copyright &copy; Bilbol {{ date('Y') }}</span>
                     </div>
                 </div>
             </footer>
@@ -214,7 +248,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>
+                    <a class="btn btn-primary" href="{{ route('logout') }}">Logout</a>
                 </div>
             </div>
         </div>
@@ -233,7 +267,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="@yield('delete')" method="POST">
-                    {{-- <form action="{{ route('inventory.delete') }}" method="POST"> --}}
+                        {{-- <form action="{{ route('inventory.delete') }}" method="POST"> --}}
                         @csrf
                         <div class="delete-wrap text-center">
                             <div class="del-icon">
@@ -242,10 +276,10 @@
                             <input type="hidden" name="id" class="e_id" value="">
                             <h2>Sure you want to delete</h2>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger">Yes</button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Yes</button>
                     </form>
                 </div>
             </div>

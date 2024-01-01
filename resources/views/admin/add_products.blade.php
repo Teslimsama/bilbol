@@ -1,4 +1,5 @@
 @extends('layout.admin_master')
+@section('title', 'Add Product | ')
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">

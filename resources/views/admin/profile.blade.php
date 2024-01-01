@@ -1,4 +1,5 @@
 @extends('layout.admin_master')
+@section('title', 'Profile | ')
 @section('content')
     <div class="container-fluid rounded bg-white mt-2 mb-2">
         <div class="row">
