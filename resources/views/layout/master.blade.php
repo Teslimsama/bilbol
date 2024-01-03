@@ -58,7 +58,8 @@
     <!-- fonts style -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,700&display=swap"
         rel="stylesheet">
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this template -->    <link href="{{ URL::to('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+
     <link href="{{ URL::to('assets/css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
     <link href="{{ URL::to('assets/css/responsive.css') }}" rel="stylesheet" />
@@ -150,12 +151,12 @@
         <div class="container">
             <div class="info_logo">
                 <h2>
-                    Digitf
+                    Bilbol Kitchen
                 </h2>
             </div>
             <div class="row">
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="info_contact">
                         <h5>
                             About Shop
@@ -165,7 +166,9 @@
                                 <img src="assets/images/location-white.png" width="18px" alt="">
                             </div>
                             <p>
-                                Address
+                                Block 9 Flat 6,
+                                Informatiom Quarters,
+                                Phase 4, Kubwa - Abuja.
                             </p>
                         </div>
                         <div>
@@ -173,7 +176,10 @@
                                 <img src="assets/images/telephone-white.png" width="12px" alt="">
                             </div>
                             <p>
-                                +01 1234567890
+                                +234 8077747898
+                            </p>&nbsp;
+                            <p>
+                                +234 7039892637
                             </p>
                         </div>
                         <div>
@@ -181,69 +187,23 @@
                                 <img src="assets/images/envelope-white.png" width="18px" alt="">
                             </div>
                             <p>
-                                demo@gmail.com
+                                bolajimotunrayo20@gmail.com
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="info_info">
                         <h5>
                             Informations
                         </h5>
                         <p>
-                            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                           Discover a one-stop solution for all your event needs at Bilbol Kitchen. We specialize in providing top-notch equipment rentals for cooking and events, ensuring you have the tools you need to make your celebration a success. From elegant decorations that set the ambiance to professional catering services that delight the palate, our team excels in creating memorable experiences. Entrust us with your event management, and watch as we turn your vision into reality. With our culinary expertise, we also offer event cooking services, crafting delectable dishes that leave a lasting impression on your guests. Elevate your events with Bilbol Kitchen – where every detail matters, and every moment is unforgettable.
                         </p>
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="info_insta">
-                        <h5>
-                            Instagram
-                        </h5>
-                        <div class="insta_container">
-                            <div>
-                                <a href="">
-                                    <div class="insta-box b-1">
-                                        <img src="assets/images/i-1.jpg" alt="">
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="insta-box b-2">
-                                        <img src="assets/images/i-2.jpg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div>
-                                <a href="">
-                                    <div class="insta-box b-3">
-                                        <img src="assets/images/i-3.jpg" alt="">
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="insta-box b-4">
-                                        <img src="assets/images/i-4.jpg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="">
-                                    <div class="insta-box b-3">
-                                        <img src="assets/images/i-5.jpg" alt="">
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="insta-box b-4">
-                                        <img src="assets/images/i-6.jpg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="info_form ">
                         <h5>
                             Newsletter
@@ -280,8 +240,8 @@
     <section class="container-fluid footer_section ">
         <div class="container">
             <p>
-                &copy; 2019 All Rights Reserved By
-                <a href="https://html.design/">Free Html Templates</a>
+                Bilbol Kitchen &copy; {{ date('Y') }} All Rights Reserved By
+                <a target="blank" href="https://teslim.unibooks.com.ng">Teslim-sama</a>
             </p>
         </div>
     </section>
@@ -333,7 +293,7 @@
 
         })
     </script>
-    
+
     @yield('script')
 
 </body>

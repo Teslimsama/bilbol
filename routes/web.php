@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\RentedController;
 use App\Http\Controllers\CategoryController;
@@ -42,16 +43,19 @@ Route::middleware('guest')->group(function () {
     Route::post('reset_password', [NewPasswordController::class, 'store'])
         ->name('password.update');
 
-    Route::patch('update-cart', [RentedController::class, 'update'])->name('update_cart');
+    Route::controller(CartController::class)->group(function () {
 
-    Route::get('add-to-cart/{id}', [RentedController::class, 'addToCart'])->name('add_to_cart');
+        Route::patch('update-cart', 'update')->name('update_cart');
 
-    Route::delete('remove-from-cart', [RentedController::class, 'remove'])->name('remove_from_cart');
+        Route::get('add-to-cart/{id}', 'addToCart')->name('add_to_cart');
 
+        Route::delete('remove-from-cart', 'remove')->name('remove_from_cart');
+    });
     Route::controller(ClientController::class)->group(function () {
         Route::get('/index',  'index')->name('index');
         Route::get('/',  'index')->name('home');
         Route::get('/about',  'about')->name('about');
+        Route::get('/details/{id}',  'details')->name('details');
         Route::get('/shop',  'shop')->name('shop');
         Route::get('/furniture',  'furniture')->name('furniture');
         Route::get('/contact',  'contact')->name('contact');

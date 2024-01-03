@@ -3,11 +3,11 @@
 @section('content')
     <!-- slider section -->
     <section class="slider_section ">
-        <div class="play_btn">
+        {{-- <div class="play_btn">
             <a href="">
                 <img src="assets/images/play.png" alt="">
             </a>
-        </div>
+        </div> --}}
         <div class="number_box">
             <div>
                 <ol class="carousel-indicators indicator-2">
@@ -176,7 +176,7 @@
                             labore et
                             dolore magna aliqua. Ut enim ad minim veniam
                         </p>
-                        <a href="">
+                        <a href="{{ route('about') }}">
                             Read More
                         </a>
                     </div>
@@ -362,7 +362,7 @@
 
     <!-- discount section -->
 
-    <section class="discount_section  layout_padding">
+    {{-- <section class="discount_section  layout_padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -388,7 +388,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- end discount section -->
 
@@ -402,73 +402,30 @@
                 </h2>
             </div>
             <div class="brand_container layout_padding2">
-                <div class="box">
-                    <a href="">
-                        <div class="new">
-                            <h5>
-                                New
-                            </h5>
-                        </div>
-                        <div class="img-box">
-                            <img src="assets/images/slider-img.png" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h6 class="price">
-                                $100
-                            </h6>
-                            <h6>
-                                Chair
-                            </h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="box">
-                    <a href="">
-                        <div class="img-box">
-                            <img src="assets/images/slider-img.png" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h6 class="price">
-                                $100
-                            </h6>
-                            <h6>
-                                Chair
-                            </h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="box">
-                    <a href="">
-                        <div class="img-box">
-                            <img src="assets/images/slider-img.png" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h6 class="price">
-                                $100
-                            </h6>
-                            <h6>
-                                Chair
-                            </h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="box">
-                    <a href="">
-                        <div class="img-box">
-                            <img src="assets/images/slider-img.png" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h6 class="price">
-                                $100
-                            </h6>
-                            <h6>
-                                Chair
-                            </h6>
-                        </div>
-                    </a>
-                </div>
+                @foreach ($inventoryList as $key => $list)
+                    <div class="box">
+                        <a href="">
+                            <div class="new">
+                                <h5>
+                                    New
+                                </h5>
+                            </div>
+                            <div class="img-box">
+                                <img src="assets/images/slider-img.png" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <h6 class="price">
+                                    ₦{{ $list->payments_price }}
+                                </h6>
+                                <h6>
+                                    {{ $list->name }}
+                                </h6>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
-            <a href="" class="brand-btn">
+            <a href="{{ route('shop') }}" class="brand-btn">
                 See More
             </a>
         </div>
@@ -477,7 +434,7 @@
     <!-- end brand section -->
     <!-- contact section -->
 
-    <section class="contact_section layout_padding">
+    {{-- <section class="contact_section layout_padding">
         <div class="container ">
             <div class="heading_container">
                 <h2 class="">
@@ -512,16 +469,13 @@
                 <div class="col-md-6">
                     <div class="map_container">
                         <div class="map-responsive">
-                            <iframe
-                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France"
-                                width="600" height="300" frameborder="0" style="border:0; width: 100%; height:100%"
-                                allowfullscreen></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3938.998826588339!2d7.3416571742506465!3d9.154577290911822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd94f05eb489b%3A0x679507ea98ee14b0!2sInformation%20Quarters%2C%20Phase%204!5e0!3m2!1sen!2sng!4v1704114307581!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- end contact section -->
 

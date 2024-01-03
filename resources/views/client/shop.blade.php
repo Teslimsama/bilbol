@@ -11,8 +11,9 @@
                 </h2>
             </div>
             <div class="brand_container layout_padding2">
+                  @foreach ($inventoryList as $key => $list)
                 <div class="box">
-                    <a href="">
+                    <a href="{{ url('details/' . $list->id) }}">
                         <div class="new">
                             <h5>
                                 New
@@ -31,55 +32,8 @@
                         </div>
                     </a>
                 </div>
-                <div class="box">
-                    <a href="">
-                        <div class="img-box">
-                            <img src="assets/images/slider-img.png" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h6 class="price">
-                                $100
-                            </h6>
-                            <h6>
-                                Chair
-                            </h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="box">
-                    <a href="">
-                        <div class="img-box">
-                            <img src="assets/images/slider-img.png" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h6 class="price">
-                                $100
-                            </h6>
-                            <h6>
-                                Chair
-                            </h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="box">
-                    <a href="">
-                        <div class="img-box">
-                            <img src="assets/images/slider-img.png" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h6 class="price">
-                                $100
-                            </h6>
-                            <h6>
-                                Chair
-                            </h6>
-                        </div>
-                    </a>
-                </div>
+                 @endforeach
             </div>
-            <a href="" class="brand-btn">
-                See More
-            </a>
         </div>
     </section>
 

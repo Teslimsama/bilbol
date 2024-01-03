@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\cart;
 use App\Models\Inventory;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -19,23 +20,26 @@ class CartController extends Controller
             $cart = session()->get('cart', []);
 
             if (isset($cart[$id])) {
-                $cart[$id]['quantity']++;
+                // $cart[$id]['quantity']++;
+                $cart[$id]['quantity'] = (int)$cart[$id]['quantity'] + 1;
             } else {
                 $cart[$id] = [
-                    "inventory_name" => $inventory->inventory_name,
-                    "photo" => $inventory->photo,
-                    "price" => $inventory->price,
+                    "name" => $inventory->name,
+                    "image" => $inventory->image,
+                    "payments_price" => $inventory->payments_price,
                     "quantity" => 1
                 ];
             }
 
             session()->put('cart', $cart);
             session()->save();
-
-            return redirect()->back()->with('success', 'Inventory added to cart successfully!');
-        } catch (ModelNotFoundException $exception) {
+            // dd(session());
+            Toastr::success('Inventory added to cart successfully!', 'Success');
+            return redirect()->back();
+        } catch (\Exception $e) {
             // Handle the case where the inventory item is not found
-            return redirect()->back()->with('error', 'Inventory not found!');
+            Toastr::error('Inventory not found!', 'Error');
+            return redirect()->back();
         }
     }
 
@@ -44,14 +48,6 @@ class CartController extends Controller
         if ($request->id && $request->quantity) {
             $cart = session()->get('cart');
             $newQuantity = $request->quantity;
-
-            if ($request->has('action') && $request->action == 'plus') {
-                // Increment quantity for plus action
-                $newQuantity++;
-            } elseif ($request->has('action') && $request->action == 'minus' && $newQuantity > 1) {
-                // Decrement quantity for minus action, but ensure it doesn't go below 1
-                $newQuantity--;
-            }
 
             $cart[$request->id]["quantity"] = $newQuantity;
             session()->put('cart', $cart);
@@ -74,5 +70,4 @@ class CartController extends Controller
             }
         }
     }
-
 }

@@ -109,7 +109,7 @@
                 <div class="col-md-9">
                     <div class="ibox">
                         <div class="ibox-title">
-                            <span class="pull-right">(<strong>5</strong>) items</span>
+                            <span class="pull-right">(<strong>{{ count($cart) }}</strong>) items</span>
                             <h5>Items in your cart</h5>
                         </div>
                         <div class="ibox-content">
@@ -119,19 +119,23 @@
                                         @php $total = 0 @endphp
                                         @if (session('cart'))
                                             @foreach (session('cart') as $id => $details)
-                                                @php $total += $details['price'] * $details['quantity'] @endphp
-
+                                                {{-- @php $total += $details['payments_price'] * $details['quantity'] @endphp --}}
+                                                @php
+                                                    // Convert quantity to a valid numeric value, default to 0 if not a valid number
+                                                    $quantity = is_numeric($details['quantity']) ? intval($details['quantity']) : 0;
+                                                    $total += floatval($details['payments_price']) * $quantity;
+                                                @endphp
                                                 <tr data-id="{{ $id }}">
                                                     <td width="90">
                                                         <div class="cart-product-imitation"><img
-                                                                src="{{ asset('img') }}/{{ $details['photo'] }}"
+                                                                src="{{ asset('img') }}/{{ $details['image'] }}"
                                                                 width="100" height="100" class="img-responsive" />
                                                         </div>
                                                     </td>
                                                     <td class="desc">
                                                         <h3>
                                                             <a href="#" class="text-primary">
-                                                                {{ $details['product_name'] }}
+                                                                {{ $details['name'] }}
                                                             </a>
                                                         </h3>
                                                         <p class="small">
@@ -149,21 +153,23 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        ${{ $details['price'] }}
-                                                        <s class="small text-muted">${{ $details['price'] }}</s>
+                                                        ${{ $details['payments_price'] }}
+                                                        <s class="small text-muted">${{ $details['payments_price'] }}</s>
                                                     </td>
                                                     <td width="65">
                                                         <div class='input-group quantity mx-auto' style='width: 100px;'>
                                                             <div class='input-group-btn'>
-                                                                <button class='btn btn-sm btn-primary btn-minus minus'>
+                                                                <button type="button"
+                                                                    class='btn btn-sm btn-primary btn-minus'>
                                                                     <i class='fa fa-minus'></i>
                                                                 </button>
                                                             </div>
-                                                            <input type='number'
-                                                                class='form-control form-control-sm bg-secondary text-center  quantity cart_update'
+                                                            <input type="number" id="quantity"
+                                                                class="form-control form-control-sm bg-secondary text-center  quantity"
                                                                 value="{{ $details['quantity'] }}" min="1" />
                                                             <div class='input-group-btn'>
-                                                                <button class='btn btn-sm btn-primary btn-plus add'>
+                                                                <button type="button"
+                                                                    class='btn btn-sm btn-primary btn-plus'>
                                                                     <i class='fa fa-plus'></i>
                                                                 </button>
                                                             </div>
@@ -171,7 +177,7 @@
                                                     </td>
                                                     <td>
                                                         <h4>
-                                                            ${{ $details['price'] * $details['quantity'] }}
+                                                            {{-- ${{ $details['payments_price'] * $details['quantity'] }} --}}
                                                         </h4>
                                                     </td>
                                                 </tr>
@@ -252,84 +258,81 @@
         </div>
     </div>
 @endsection
-@section(' scripts')
+@section('script')
+    @parent
     <script type="text/javascript">
-        $(".cart_update").change(function(e) {
-            e.preventDefault();
-            var ele = $(this);
+        // Wrap your event bindings in a document ready function
+        $(document).ready(function() {
 
-            $.ajax({
-                url: '{{ route('update_cart') }}',
-                method: "patch",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: ele.parents("tr").attr("data-id"),
-                    quantity: ele.parents("tr").find(".quantity").val()
-                },
-                success: function(response) {
-                    window.location.reload();
+            var quantityValue = document.querySelector(`#quantity`).value
+            // Now you can use the quantityValue as needed
+            console.log("Quantity:", quantityValue);
+
+            $(".cart_remove").click(function(e) {
+                e.preventDefault();
+                var ele = $(this);
+
+                if (confirm("Do you really want to remove?")) {
+                    $.ajax({
+                        url: '{{ route('remove_from_cart') }}',
+                        method: "DELETE",
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            id: ele.parents("tr").attr("data-id")
+                        },
+                        success: function(response) {
+                            window.location.reload();
+                        }
+                    });
                 }
             });
-        });
 
-        $(".cart_remove").click(function(e) {
-            e.preventDefault();
-            var ele = $(this);
+            $(".btn-plus").click(function(e) {
+                e.preventDefault();
+                var ele = $(this);
 
-            if (confirm("Do you really want to remove?")) {
+                // Use document.querySelector to get the quantity value
+                var currentQuantity = parseInt(document.querySelector(`#quantity`).value);
+
                 $.ajax({
-                    url: '{{ route('remove_from_cart') }}',
-                    method: "DELETE",
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        id: ele.parents("tr").attr("data-id")
-                    },
-                    success: function(response) {
-                        window.location.reload();
-                    }
-                });
-            }
-        });
-
-        $(".btn-plus").click(function(e) {
-            e.preventDefault();
-            var ele = $(this);
-
-            $.ajax({
-                url: '{{ route('update_cart') }}', // Use the same update route for plus button
-                method: "patch",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: ele.parents("tr").attr("data-id"),
-                    quantity: parseInt(ele.parents("tr").find(".quantity").val()) + 1
-                    action: 'plus'
-                },
-                success: function(response) {
-                    window.location.reload();
-                }
-            });
-        });
-
-        $(".btn-minus").click(function(e) {
-            e.preventDefault();
-            var ele = $(this);
-            var currentQuantity = parseInt(ele.parents("tr").find(".quantity").val());
-
-            if (currentQuantity > 1) {
-                $.ajax({
-                    url: '{{ route('update_cart') }}', // Use the same update route for minus button
+                    url: '{{ route('update_cart') }}',
                     method: "patch",
                     data: {
                         _token: '{{ csrf_token() }}',
                         id: ele.parents("tr").attr("data-id"),
-                        quantity: currentQuantity - 1
-                        action: 'minus'
+                        quantity: currentQuantity + 1,
+                        action: 'plus'
                     },
                     success: function(response) {
                         window.location.reload();
                     }
                 });
-            }
+            });
+
+            $(".btn-minus").click(function(e) {
+                e.preventDefault();
+                var ele = $(this);
+
+                // Use document.querySelector to get the quantity value
+                var currentQuantity = parseInt(document.querySelector(`#quantity`).value);
+
+                if (currentQuantity > 1) {
+                    $.ajax({
+                        url: '{{ route('update_cart') }}',
+                        method: "patch",
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            id: ele.parents("tr").attr("data-id"),
+                            quantity: currentQuantity - 1,
+                            action: 'minus'
+                        },
+                        success: function(response) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+
         });
     </script>
 @endsection
