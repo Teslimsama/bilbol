@@ -24,10 +24,10 @@
                         </div>
                         <div class="detail-box">
                             <h6 class="price">
-                                $100
+                                ₦{{$list->payments_price}}
                             </h6>
                             <h6>
-                                Chair
+                               {{$list->name}} 
                             </h6>
                         </div>
                     </a>

@@ -44,11 +44,11 @@
         }
 
         .activity-checkout .checkout-item:first-child {
-            border-color: #3b76e1
+            border-color: #6A704C
         }
 
         .activity-checkout .checkout-item:first-child:after {
-            background-color: #3b76e1
+            background-color: #6A704C
         }
 
         .activity-checkout .checkout-item:last-child {
@@ -99,7 +99,7 @@
             -webkit-box-align: center;
             -ms-flex-align: center;
             align-items: center;
-            background-color: #3b76e1;
+            background-color: #6A704C;
             color: #fff;
             display: -webkit-box;
             display: -ms-flexbox;
@@ -169,7 +169,7 @@
         }
 
         .card-radio-input:checked+.card-radio {
-            border-color: #3b76e1 !important
+            border-color: #6A704C !important
         }
 
         .font-size-16 {
@@ -230,6 +230,18 @@
             font-size: 13px;
             font-weight: 500
         }
+          .paystack-button {
+        background-color: #36b8cf;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .paystack-button:hover {
+        background-color: #258c9e;
+    }
     </style>
     <div class="container">
 
@@ -242,7 +254,7 @@
                             <li class="checkout-item">
                                 <div class="avatar checkout-icon p-1">
                                     <div class="avatar-title rounded-circle bg-primary">
-                                        <i class="bx bxs-receipt text-white font-size-20"></i>
+                                        <i class="fas fa-receipt text-white font-size-20"></i>
                                     </div>
                                 </div>
                                 <div class="feed-item-list">
@@ -250,7 +262,8 @@
                                         <h5 class="font-size-16 mb-1">Billing Info</h5>
                                         <p class="text-muted text-truncate mb-4">Sed ut perspiciatis unde omnis iste</p>
                                         <div class="mb-3">
-                                            <form>
+                                            <form method="post" action="{{ route('paystack.charge') }}">
+                                                @csrf
                                                 <div>
                                                     <div class="row">
                                                         <div class="col-lg-4">
@@ -317,7 +330,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -325,7 +337,7 @@
                             <li class="checkout-item">
                                 <div class="avatar checkout-icon p-1">
                                     <div class="avatar-title rounded-circle bg-primary">
-                                        <i class="bx bxs-truck text-white font-size-20"></i>
+                                        <i class="fas fa-truck text-white font-size-20"></i>
                                     </div>
                                 </div>
                                 <div class="feed-item-list">
@@ -354,7 +366,7 @@
                                                             <a href="#" data-bs-toggle="tooltip"
                                                                 data-placement="top" title=""
                                                                 data-bs-original-title="Edit">
-                                                                <i class="bx bx-pencil font-size-16"></i>
+                                                                <i class="fas fa-pencil font-size-16"></i>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -379,7 +391,7 @@
                                                             <a href="#" data-bs-toggle="tooltip"
                                                                 data-placement="top" title=""
                                                                 data-bs-original-title="Edit">
-                                                                <i class="bx bx-pencil font-size-16"></i>
+                                                                <i class="fas fa-pencil font-size-16"></i>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -392,7 +404,7 @@
                             <li class="checkout-item">
                                 <div class="avatar checkout-icon p-1">
                                     <div class="avatar-title rounded-circle bg-primary">
-                                        <i class="bx bxs-wallet-alt text-white font-size-20"></i>
+                                        <i class="fas fa-wallet text-white font-size-20"></i>
                                     </div>
                                 </div>
                                 <div class="feed-item-list">
@@ -409,7 +421,7 @@
                                                         <input type="radio" name="pay-method" id="pay-methodoption1"
                                                             class="card-radio-input">
                                                         <span class="card-radio py-3 text-center text-truncate">
-                                                            <i class="bx bx-credit-card d-block h2 mb-3"></i>
+                                                            <i class="fas fa-credit-card d-block h2 mb-3"></i>
                                                             Credit / Debit Card
                                                         </span>
                                                     </label>
@@ -422,7 +434,7 @@
                                                         <input type="radio" name="pay-method" id="pay-methodoption2"
                                                             class="card-radio-input">
                                                         <span class="card-radio py-3 text-center text-truncate">
-                                                            <i class="bx bxl-paypal d-block h2 mb-3"></i>
+                                                            <i class="fas fa-paypal d-block h2 mb-3"></i>
                                                             Paypal
                                                         </span>
                                                     </label>
@@ -436,7 +448,7 @@
                                                             class="card-radio-input" checked="">
 
                                                         <span class="card-radio py-3 text-center text-truncate">
-                                                            <i class="bx bx-money d-block h2 mb-3"></i>
+                                                            <i class="fas fa-money-bill d-block h2 mb-3"></i>
                                                             <span>Cash on Delivery</span>
                                                         </span>
                                                     </label>
@@ -449,17 +461,19 @@
                             </li>
                         </ol>
                     </div>
-                </div>
 
+                </div>
                 <div class="row my-4">
                     <div class="col">
-                        <a href="ecommerce-products.html" class="btn btn-link text-muted">
-                            <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
+                        <a href="{{ route('shop') }}" class="btn btn-link text-muted">
+                            <i class="fas fa-arrow-left me-1"></i> Continue Shopping </a>
                     </div> <!-- end col -->
                     <div class="col">
                         <div class="text-end mt-2 mt-sm-0">
-                            <a href="#" class="btn btn-success">
-                                <i class="mdi mdi-cart-outline me-1"></i> Procced </a>
+                            <button type="submit" class="paystack-button">
+            <i class="fas fa-shopping-cart me-1"></i> Proceed to Pay
+        </button>
+    </form>
                         </div>
                     </div> <!-- end col -->
                 </div> <!-- end row-->
@@ -480,45 +494,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row"><img src="https://www.bootdey.com/image/280x280/FF00FF/000000"
-                                                alt="product-img" title="product-img" class="avatar-lg rounded"></th>
-                                        <td>
-                                            <h5 class="font-size-16 text-truncate"><a href="#"
-                                                    class="text-dark">Waterproof Mobile Phone</a></h5>
-                                            <p class="text-muted mb-0">
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star-half text-warning"></i>
-                                            </p>
-                                            <p class="text-muted mb-0 mt-1">$ 260 x 2</p>
-                                        </td>
-                                        <td>$ 520</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><img src="https://www.bootdey.com/image/280x280/FF00FF/000000"
-                                                alt="product-img" title="product-img" class="avatar-lg rounded"></th>
-                                        <td>
-                                            <h5 class="font-size-16 text-truncate"><a href="#"
-                                                    class="text-dark">Smartphone Dual Camera</a></h5>
-                                            <p class="text-muted mb-0">
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                                <i class="bx bxs-star text-warning"></i>
-                                            </p>
-                                            <p class="text-muted mb-0 mt-1">$ 260 x 1</p>
-                                        </td>
-                                        <td>$ 260</td>
-                                    </tr>
+                                    @php $total = 0 @endphp
+                                    @if (session('cart'))
+                                        @foreach (session('cart') as $id => $details)
+                                            @php
+                                                // Convert quantity to a valid numeric value, default to 0 if not a valid number
+                                                $quantity = is_numeric($details['quantity']) ? intval($details['quantity']) : 0;
+                                                $subtotal = floatval($details['payments_price']) * $quantity;
+                                                $total += $subtotal;
+                                            @endphp
+                                            <tr>
+                                                <td>
+                                                    <img src="{{ asset('img') }}/{{ $details['image'] }}"
+                                                        alt="product-img" title="product-img" class="avatar-lg rounded">
+                                                </td>
+                                                <td>
+                                                    <h5 class="font-size-16 text-truncate">
+                                                        <a href="#" class="text-dark">{{ $details['name'] }}</a>
+                                                    </h5>
+                                                    <p class="text-muted mb-0 mt-1">₦{{ $details['payments_price'] }} x
+                                                        {{ $details['quantity'] }}</p>
+                                                </td>
+                                                <td>₦{{ $subtotal }}</td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                     <tr>
                                         <td colspan="2">
                                             <h5 class="font-size-14 m-0">Sub Total :</h5>
                                         </td>
                                         <td>
-                                            $ 780
+                                            ₦{{ $subtotal }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -526,7 +532,7 @@
                                             <h5 class="font-size-14 m-0">Discount :</h5>
                                         </td>
                                         <td>
-                                            - $ 78
+                                            78%
                                         </td>
                                     </tr>
 
@@ -535,15 +541,7 @@
                                             <h5 class="font-size-14 m-0">Shipping Charge :</h5>
                                         </td>
                                         <td>
-                                            $ 25
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <h5 class="font-size-14 m-0">Estimated Tax :</h5>
-                                        </td>
-                                        <td>
-                                            $ 18.20
+                                            ₦1000
                                         </td>
                                     </tr>
 
@@ -552,16 +550,16 @@
                                             <h5 class="font-size-14 m-0">Total:</h5>
                                         </td>
                                         <td>
-                                            $ 745.2
+                                            ₦{{ $total }}
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
         <!-- end row -->
 

@@ -59,20 +59,24 @@
                     <hr />
                     <h3 class="price-container">
                         ₦{{ $inventory->payments_price }}
-                        <small>*includes tax</small>
                     </h3>
 
                     <hr />
+                    {{-- <div class="btn-group pull-right">
+                        <button class="btn  btn-primary">12 Dozen</button>
+                        <button class="btn  btn-primary"> Contact Seller</button>
+                    </div>
+                    <hr /> --}}
                     <div class="description description-tabs">
                         <ul class="nav nav-pills">
                             <li class="nav-item">
                                 <a class="nav-link active no-margin px-3 py-2" id="more-information-tab" data-toggle="pill"
                                     href="#more-information">Product Description</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link px-3 py-2" id="specifications-tab" data-toggle="pill"
                                     href="#specifications">Specifications</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2" id="reviews-tab" data-toggle="pill"
                                     href="#reviews">Reviews</a>
@@ -82,11 +86,18 @@
                             <div class="tab-pane fade show active" id="more-information">
                                 <br />
                                 <strong>Description Title</strong>
-                                <p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum ea dolor voluptatem
+                                    veritatis laboriosam hic totam nostrum, quasi voluptatibus earum expedita, iure libero
+                                    debitis! Corrupti numquam labore dolores. Deserunt iste sint cumque ipsum delectus iure
+                                    sed ad hic similique animi, aliquam temporibus facere vel corporis sit harum perferendis
+                                    tempore inventore iusto laudantium placeat excepturi eligendi? Molestiae adipisci
+                                    reprehenderit cum excepturi expedita laborum vero facilis laboriosam nemo
+                                    necessitatibus? Quia aliquam placeat quam sed labore accusamus quasi velit rem autem,
+                                    consequatur iste?
                                     {{ $inventory->description }}
                                 </p>
                             </div>
-                            <div class="tab-pane fade" id="specifications">
+                            {{-- <div class="tab-pane fade" id="specifications">
                                 <br />
                                 <dl class="">
                                     <dt>Gravina</dt>
@@ -102,7 +113,7 @@
                                     <dt>Altra porta</dt>
                                     <dd>Vestibulum id ligula porta felis euismod semper</dd>
                                 </dl>
-                            </div>
+                            </div> --}}
                             <div class="tab-pane fade" id="reviews">
                                 <br />
                                 <form method="post" class="well padding-bottom-10" onsubmit="return false;">
@@ -117,9 +128,9 @@
                                         <a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip"
                                             data-placement="bottom" title="" data-original-title="Add Voice"><i
                                                 class="fas fa-microphone"></i></a>
-                                        <a href="javascript:void(0);" class="btn btn-link profile-link-btn"
-                                            rel="tooltip" data-placement="bottom" title=""
-                                            data-original-title="Add Photo"><i class="fas fa-camera"></i></a>
+                                        <a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip"
+                                            data-placement="bottom" title="" data-original-title="Add Photo"><i
+                                                class="fas fa-camera"></i></a>
                                         <a href="javascript:void(0);" class="btn btn-link profile-link-btn"
                                             rel="tooltip" data-placement="bottom" title=""
                                             data-original-title="Add File"><i class="fas fa-file"></i></a>
@@ -192,16 +203,60 @@
                         </div>
                     </div>
                     <hr />
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <a href="{{ url('add-to-cart/' . $inventory->id) }}" role="button" class="btn btn-primary btn-lg">Add to cart
-                                (₦{{ $inventory->payments_price }})</a>
+                    <div class="d-flex align-items-center mb-4 pt-2">
+                        <div class="input-group quantity mr-3" style="width: 130px;">
+                            <div class="input-group-btn">
+                                <button id="minus" type="button" class="btn btn-primary btn-minus">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <input type="text" name="quantity" id="quantity"
+                                class="form-control bg-secondary text-center" value="1">
+
+                            <div class="input-group-btn">
+                                <button id="add" type="button" class="btn btn-primary btn-plus">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
-                        
+                        <a id="add-to-cart-link" href="{{ url('add-to-cart') }}/{{ $inventory->id }}/1"
+                            class="btn btn-primary btn-lg">
+                            Add to cart (₦{{ $inventory->payments_price }})
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- end product -->
     </div>
+@endsection
+@section('script')
+    <script>
+        function updateLink() {
+            var currentQuantity = parseInt(document.querySelector(`#quantity`).value);
+            var inventoryId = "{{ $inventory->id }}";
+            var addToCartLink = "{{ url('add-to-cart') }}/" + inventoryId + "/" + currentQuantity;
+            document.querySelector('#add-to-cart-link').href = addToCartLink;
+        }
+
+        $(function() {
+            $('#add').click(function(e) {
+                e.preventDefault();
+                var quantity = $('#quantity').val();
+                quantity++;
+                $('#quantity').val(quantity);
+                updateLink();
+            });
+
+            $('#minus').click(function(e) {
+                e.preventDefault();
+                var quantity = $('#quantity').val();
+                if (quantity > 1) {
+                    quantity--;
+                }
+                $('#quantity').val(quantity);
+                updateLink();
+            });
+        });
+    </script>
 @endsection

@@ -138,11 +138,7 @@
                                                                 {{ $details['name'] }}
                                                             </a>
                                                         </h3>
-                                                        <p class="small">
-                                                            It is a long established fact that a reader will be distracted
-                                                            by the readable content of a page when looking at its layout.
-                                                            The point of using Lorem Ipsum is
-                                                        </p>
+                                                        
                                                         <dl class="small m-b-none">
                                                             <dt>Description lists</dt>
                                                             <dd>A description list is perfect for defining terms.</dd>
@@ -153,8 +149,8 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        ${{ $details['payments_price'] }}
-                                                        <s class="small text-muted">${{ $details['payments_price'] }}</s>
+                                                        ₦{{ $details['payments_price'] }}
+                                                        <s class="small text-muted">₦{{ $details['payments_price'] }}</s>
                                                     </td>
                                                     <td width="65">
                                                         <div class='input-group quantity mx-auto' style='width: 100px;'>
@@ -177,7 +173,7 @@
                                                     </td>
                                                     <td>
                                                         <h4>
-                                                            {{-- ${{ $details['payments_price'] * $details['quantity'] }} --}}
+                                                            ₦{{ $details['payments_price'] * $details['quantity'] }}
                                                         </h4>
                                                     </td>
                                                 </tr>
@@ -187,13 +183,11 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- Repeat similar structure for other items -->
-                        <!-- ... -->
 
                         <div class="ibox-content">
-                            <button class="btn btn-primary pull-right"><i class="fas fa-shopping-cart"></i>
-                                Checkout</button>
-                            <button class="btn btn-white"><i class="fas fa-arrow-left"></i> Continue shopping</button>
+                            <a href="{{route('checkout')}}" class="btn btn-primary pull-right"><i class="fas fa-shopping-cart"></i>
+                                Checkout</a>
+                            <a href="{{route('shop')}}" class="btn btn-white"><i class="fas fa-arrow-left"></i> Continue shopping</a>
                         </div>
                     </div>
                 </div>
@@ -208,17 +202,14 @@
                                 Total
                             </span>
                             <h2 class="font-bold">
-                                ${{ $total }}
+                                ₦{{ $total }}
                             </h2>
                             <hr>
-                            <span class="text-muted small">
-                                *For United States, France and Germany applicable sales tax will be applied
-                            </span>
                             <div class="m-t-sm">
                                 <div class="btn-group">
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-shopping-cart"></i>
+                                    <a href="{{route('checkout')}}" class="btn btn-primary btn-sm"><i class="fas fa-shopping-cart"></i>
                                         Checkout</a>
-                                    <a href="#" class="btn btn-white btn-sm"> Cancel</a>
+                                    {{-- <a href="#" class="btn btn-white btn-sm"> Cancel</a> --}}
                                 </div>
                             </div>
                         </div>
@@ -264,9 +255,6 @@
         // Wrap your event bindings in a document ready function
         $(document).ready(function() {
 
-            var quantityValue = document.querySelector(`#quantity`).value
-            // Now you can use the quantityValue as needed
-            console.log("Quantity:", quantityValue);
 
             $(".cart_remove").click(function(e) {
                 e.preventDefault();

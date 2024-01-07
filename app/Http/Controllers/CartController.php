@@ -8,40 +8,49 @@ use App\Models\cart;
 use App\Models\Inventory;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
 
-    public function addToCart($id)
+
+    public function addToCart($id, $qty)
     {
         try {
+            // Validate $id and $qty
+            // For example, you can use the numeric rule for $qty
+            // $this->validate([
+            //     'id' => 'numeric',
+            //     'qty' => 'numeric',
+            // ]);
+
             $inventory = Inventory::findOrFail($id);
 
             $cart = session()->get('cart', []);
 
             if (isset($cart[$id])) {
-                // $cart[$id]['quantity']++;
-                $cart[$id]['quantity'] = (int)$cart[$id]['quantity'] + 1;
+                $cart[$id]['quantity'] = (int) $cart[$id]['quantity'] + (int) $qty;
             } else {
                 $cart[$id] = [
                     "name" => $inventory->name,
                     "image" => $inventory->image,
                     "payments_price" => $inventory->payments_price,
-                    "quantity" => 1
+                    "quantity" => (int) $qty,
                 ];
             }
 
             session()->put('cart', $cart);
             session()->save();
-            // dd(session());
+
             Toastr::success('Inventory added to cart successfully!', 'Success');
             return redirect()->back();
         } catch (\Exception $e) {
-            // Handle the case where the inventory item is not found
-            Toastr::error('Inventory not found!', 'Error');
+            Log::error($e);
+            Toastr::error('An error occurred while adding to the cart!', 'Error');
             return redirect()->back();
         }
     }
+
 
     public function update(Request $request)
     {

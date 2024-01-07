@@ -11,6 +11,7 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\RentedController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -43,11 +44,20 @@ Route::middleware('guest')->group(function () {
     Route::post('reset_password', [NewPasswordController::class, 'store'])
         ->name('password.update');
 
+    Route::controller(PaymentController::class)->group(function () {
+
+        Route::get('/checkout_test',  'showCheckoutForm');
+        // Laravel 8
+        Route::post('/pay', 'redirectToGateway')->name('pay');
+        // Laravel 8
+        Route::get('/paystack/callback', 'handleGatewayCallback');
+    });
     Route::controller(CartController::class)->group(function () {
 
         Route::patch('update-cart', 'update')->name('update_cart');
 
-        Route::get('add-to-cart/{id}', 'addToCart')->name('add_to_cart');
+        Route::get('add-to-cart/{id}/{qty}', 'addToCart')->name('add_to_cart');
+
 
         Route::delete('remove-from-cart', 'remove')->name('remove_from_cart');
     });
