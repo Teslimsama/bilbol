@@ -11,7 +11,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class RentedController extends Controller
 {

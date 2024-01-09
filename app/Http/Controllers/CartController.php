@@ -32,6 +32,7 @@ class CartController extends Controller
                 $cart[$id]['quantity'] = (int) $cart[$id]['quantity'] + (int) $qty;
             } else {
                 $cart[$id] = [
+                    "id" => $inventory->id,
                     "name" => $inventory->name,
                     "image" => $inventory->image,
                     "payments_price" => $inventory->payments_price,

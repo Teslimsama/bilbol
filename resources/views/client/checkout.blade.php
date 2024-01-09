@@ -230,18 +230,19 @@
             font-size: 13px;
             font-weight: 500
         }
-          .paystack-button {
-        background-color: #36b8cf;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
 
-    .paystack-button:hover {
-        background-color: #258c9e;
-    }
+        .paystack-button {
+            background-color: #6A704C;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .paystack-button:hover {
+            background-color: #6a704ca6;
+        }
     </style>
     <div class="container">
 
@@ -262,15 +263,23 @@
                                         <h5 class="font-size-16 mb-1">Billing Info</h5>
                                         <p class="text-muted text-truncate mb-4">Sed ut perspiciatis unde omnis iste</p>
                                         <div class="mb-3">
-                                            <form method="post" action="{{ route('paystack.charge') }}">
-                                                @csrf
+                                            <form method="post" action="{{ route('pay') }}">
+                                                {{-- @csrf --}}
+                                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <div>
                                                     <div class="row">
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
-                                                                <label class="form-label" for="billing-name">Name</label>
-                                                                <input type="text" class="form-control" id="billing-name"
-                                                                    placeholder="Enter name">
+                                                                <label class="form-label" for="billing-name">First Name</label>
+                                                                <input type="text" class="form-control" name="first_name"
+                                                                    placeholder=" Enter First name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="mb-3">
+                                                                <label class="form-label" for="billing-name">Last Name</label>
+                                                                <input type="text" class="form-control" name="last_name"
+                                                                    placeholder="Enter Last name">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
@@ -278,125 +287,23 @@
                                                                 <label class="form-label" for="billing-email-address">Email
                                                                     Address</label>
                                                                 <input type="email" class="form-control"
-                                                                    id="billing-email-address" placeholder="Enter email">
+                                                                    name="email" placeholder="Enter email">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
                                                                 <label class="form-label" for="billing-phone">Phone</label>
                                                                 <input type="text" class="form-control"
-                                                                    id="billing-phone" placeholder="Enter Phone no.">
+                                                                    name="phone" placeholder="Enter Phone no.">
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="mb-3">
                                                         <label class="form-label" for="billing-address">Address</label>
-                                                        <textarea class="form-control" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="mb-4 mb-lg-0">
-                                                                <label class="form-label">Country</label>
-                                                                <select class="form-control form-select" title="Country">
-                                                                    <option value="0">Select Country</option>
-                                                                    <option value="AF">Afghanistan</option>
-                                                                    <option value="AL">Albania</option>
-                                                                    <option value="DZ">Algeria</option>
-                                                                    <option value="AS">American Samoa</option>
-                                                                    <option value="AD">Andorra</option>
-                                                                    <option value="AO">Angola</option>
-                                                                    <option value="AI">Anguilla</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-4">
-                                                            <div class="mb-4 mb-lg-0">
-                                                                <label class="form-label" for="billing-city">City</label>
-                                                                <input type="text" class="form-control" id="billing-city"
-                                                                    placeholder="Enter City">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-4">
-                                                            <div class="mb-0">
-                                                                <label class="form-label" for="zip-code">Zip / Postal
-                                                                    code</label>
-                                                                <input type="text" class="form-control" id="zip-code"
-                                                                    placeholder="Enter Postal code">
-                                                            </div>
-                                                        </div>
+                                                        <textarea class="form-control" name="address" rows="3" placeholder="Enter full address"></textarea>
                                                     </div>
                                                 </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="checkout-item">
-                                <div class="avatar checkout-icon p-1">
-                                    <div class="avatar-title rounded-circle bg-primary">
-                                        <i class="fas fa-truck text-white font-size-20"></i>
-                                    </div>
-                                </div>
-                                <div class="feed-item-list">
-                                    <div>
-                                        <h5 class="font-size-16 mb-1">Shipping Info</h5>
-                                        <p class="text-muted text-truncate mb-4">Neque porro quisquam est</p>
-                                        <div class="mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-4 col-sm-6">
-                                                    <div data-bs-toggle="collapse">
-                                                        <label class="card-radio-label mb-0">
-                                                            <input type="radio" name="address" id="info-address1"
-                                                                class="card-radio-input" checked="">
-                                                            <div class="card-radio text-truncate p-3">
-                                                                <span class="fs-14 mb-4 d-block">Address 1</span>
-                                                                <span class="fs-14 mb-2 d-block">Bradley McMillian</span>
-                                                                <span
-                                                                    class="text-muted fw-normal text-wrap mb-1 d-block">109
-                                                                    Clarksburg Park Road Show Low, AZ 85901</span>
-
-                                                                <span class="text-muted fw-normal d-block">Mo.
-                                                                    012-345-6789</span>
-                                                            </div>
-                                                        </label>
-                                                        <div class="edit-btn bg-light  rounded">
-                                                            <a href="#" data-bs-toggle="tooltip"
-                                                                data-placement="top" title=""
-                                                                data-bs-original-title="Edit">
-                                                                <i class="fas fa-pencil font-size-16"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-4 col-sm-6">
-                                                    <div>
-                                                        <label class="card-radio-label mb-0">
-                                                            <input type="radio" name="address" id="info-address2"
-                                                                class="card-radio-input">
-                                                            <div class="card-radio text-truncate p-3">
-                                                                <span class="fs-14 mb-4 d-block">Address 2</span>
-                                                                <span class="fs-14 mb-2 d-block">Bradley McMillian</span>
-                                                                <span
-                                                                    class="text-muted fw-normal text-wrap mb-1 d-block">109
-                                                                    Clarksburg Park Road Show Low, AZ 85901</span>
-                                                                <span class="text-muted fw-normal d-block">Mo.
-                                                                    012-345-6789</span>
-                                                            </div>
-                                                        </label>
-                                                        <div class="edit-btn bg-light  rounded">
-                                                            <a href="#" data-bs-toggle="tooltip"
-                                                                data-placement="top" title=""
-                                                                data-bs-original-title="Edit">
-                                                                <i class="fas fa-pencil font-size-16"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -415,7 +322,7 @@
                                     <div>
                                         <h5 class="font-size-14 mb-3">Payment method :</h5>
                                         <div class="row">
-                                            <div class="col-lg-3 col-sm-6">
+                                            {{-- <div class="col-lg-3 col-sm-6">
                                                 <div data-bs-toggle="collapse">
                                                     <label class="card-radio-label">
                                                         <input type="radio" name="pay-method" id="pay-methodoption1"
@@ -426,7 +333,7 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="col-lg-3 col-sm-6">
                                                 <div>
@@ -435,7 +342,7 @@
                                                             class="card-radio-input">
                                                         <span class="card-radio py-3 text-center text-truncate">
                                                             <i class="fas fa-paypal d-block h2 mb-3"></i>
-                                                            Paypal
+                                                            Paystack
                                                         </span>
                                                     </label>
                                                 </div>
@@ -471,9 +378,8 @@
                     <div class="col">
                         <div class="text-end mt-2 mt-sm-0">
                             <button type="submit" class="paystack-button">
-            <i class="fas fa-shopping-cart me-1"></i> Proceed to Pay
-        </button>
-    </form>
+                                <i class="fas fa-shopping-cart me-1"></i> Proceed to Pay
+                            </button>
                         </div>
                     </div> <!-- end col -->
                 </div> <!-- end row-->
@@ -481,9 +387,9 @@
             <div class="col-xl-4">
                 <div class="card checkout-order-summary">
                     <div class="card-body">
-                        <div class="p-3 bg-light mb-3">
+                        {{-- <div class="p-3 bg-light mb-3">
                             <h5 class="font-size-16 mb-0">Order Summary <span class="float-end ms-2">#MN0124</span></h5>
-                        </div>
+                        </div> --}}
                         <div class="table-responsive">
                             <table class="table table-centered mb-0 table-nowrap">
                                 <thead>
@@ -497,6 +403,7 @@
                                     @php $total = 0 @endphp
                                     @if (session('cart'))
                                         @foreach (session('cart') as $id => $details)
+                                        {{-- {{    print_r($detail)}}; --}}
                                             @php
                                                 // Convert quantity to a valid numeric value, default to 0 if not a valid number
                                                 $quantity = is_numeric($details['quantity']) ? intval($details['quantity']) : 0;
@@ -507,6 +414,10 @@
                                                 <td>
                                                     <img src="{{ asset('img') }}/{{ $details['image'] }}"
                                                         alt="product-img" title="product-img" class="avatar-lg rounded">
+                                                       <input type="hidden" name="id[]" value="{{$details['id']}}">
+
+                                                        <input type="hidden" name="qty[]" value="{{$details['quantity']}}">
+                                                        <input type="hidden" name="price[]" value="{{$details['payments_price']}}">
                                                 </td>
                                                 <td>
                                                     <h5 class="font-size-16 text-truncate">
@@ -518,47 +429,25 @@
                                                 <td>₦{{ $subtotal }}</td>
                                             </tr>
                                         @endforeach
+                                        
+    
+                                        <tr class="bg-light">
+                                            <td colspan="2">
+                                                <h5 class="font-size-14 m-0">Total:</h5>
+                                            </td>
+                                            <td>
+                                                ₦{{ $total }}
+                                                <input type="hidden" name="amount" value="{{ $total }}">
+                                            </td>
+                                        </tr>
                                     @endif
-                                    <tr>
-                                        <td colspan="2">
-                                            <h5 class="font-size-14 m-0">Sub Total :</h5>
-                                        </td>
-                                        <td>
-                                            ₦{{ $subtotal }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <h5 class="font-size-14 m-0">Discount :</h5>
-                                        </td>
-                                        <td>
-                                            78%
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="2">
-                                            <h5 class="font-size-14 m-0">Shipping Charge :</h5>
-                                        </td>
-                                        <td>
-                                            ₦1000
-                                        </td>
-                                    </tr>
-
-                                    <tr class="bg-light">
-                                        <td colspan="2">
-                                            <h5 class="font-size-14 m-0">Total:</h5>
-                                        </td>
-                                        <td>
-                                            ₦{{ $total }}
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+            </form>
 
         </div>
         <!-- end row -->
