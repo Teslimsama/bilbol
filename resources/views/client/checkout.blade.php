@@ -231,6 +231,11 @@
             font-weight: 500
         }
 
+        .paystack-button:disabled {
+            background-color: #a0a0a0;
+            cursor: not-allowed;
+        }
+
         .paystack-button {
             background-color: #6A704C;
             color: #fff;
@@ -261,23 +266,25 @@
                                 <div class="feed-item-list">
                                     <div>
                                         <h5 class="font-size-16 mb-1">Billing Info</h5>
-                                        <p class="text-muted text-truncate mb-4">Sed ut perspiciatis unde omnis iste</p>
+                                        <p class="text-muted text-truncate mb-4">Please enter your billing information to proceed with the checkout process.</p>
                                         <div class="mb-3">
-                                            <form method="post" action="{{ route('pay') }}">
+                                            <form method="post" id="myForm" action="{{ route('pay') }}">
                                                 {{-- @csrf --}}
-                                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <div>
                                                     <div class="row">
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
-                                                                <label class="form-label" for="billing-name">First Name</label>
+                                                                <label class="form-label" for="billing-name">First
+                                                                    Name</label>
                                                                 <input type="text" class="form-control" name="first_name"
                                                                     placeholder=" Enter First name">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
-                                                                <label class="form-label" for="billing-name">Last Name</label>
+                                                                <label class="form-label" for="billing-name">Last
+                                                                    Name</label>
                                                                 <input type="text" class="form-control" name="last_name"
                                                                     placeholder="Enter Last name">
                                                             </div>
@@ -286,15 +293,15 @@
                                                             <div class="mb-3">
                                                                 <label class="form-label" for="billing-email-address">Email
                                                                     Address</label>
-                                                                <input type="email" class="form-control"
-                                                                    name="email" placeholder="Enter email">
+                                                                <input type="email" class="form-control" name="email"
+                                                                    placeholder="Enter email">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
                                                                 <label class="form-label" for="billing-phone">Phone</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="phone" placeholder="Enter Phone no.">
+                                                                <input type="text" class="form-control" name="phone"
+                                                                    placeholder="Enter Phone no.">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -317,7 +324,7 @@
                                 <div class="feed-item-list">
                                     <div>
                                         <h5 class="font-size-16 mb-1">Payment Info</h5>
-                                        <p class="text-muted text-truncate mb-4">Duis arcu tortor, suscipit eget</p>
+                                        <p class="text-muted text-truncate mb-4">Please select your preferred payment choice to proceed with the checkout process.</p>
                                     </div>
                                     <div>
                                         <h5 class="font-size-14 mb-3">Payment method :</h5>
@@ -338,7 +345,7 @@
                                             <div class="col-lg-3 col-sm-6">
                                                 <div>
                                                     <label class="card-radio-label">
-                                                        <input type="radio" name="pay-method" id="pay-methodoption2"
+                                                        <input type="radio" name="pay-method" id="paystack"
                                                             class="card-radio-input">
                                                         <span class="card-radio py-3 text-center text-truncate">
                                                             <i class="fas fa-paypal d-block h2 mb-3"></i>
@@ -351,8 +358,8 @@
                                             <div class="col-lg-3 col-sm-6">
                                                 <div>
                                                     <label class="card-radio-label">
-                                                        <input type="radio" name="pay-method" id="pay-methodoption3"
-                                                            class="card-radio-input" checked="">
+                                                        <input type="radio" name="pay-method" id="cash"
+                                                            class="card-radio-input">
 
                                                         <span class="card-radio py-3 text-center text-truncate">
                                                             <i class="fas fa-money-bill d-block h2 mb-3"></i>
@@ -377,7 +384,10 @@
                     </div> <!-- end col -->
                     <div class="col">
                         <div class="text-end mt-2 mt-sm-0">
-                            <button type="submit" class="paystack-button">
+                            <button type="submit" id="paystackButton" disabled class="paystack-button">
+                                <i class="fas fa-shopping-cart me-1"></i> Proceed to Pay
+                            </button>
+                            <button type="submit" id="cashButton" disabled class="paystack-button">
                                 <i class="fas fa-shopping-cart me-1"></i> Proceed to Pay
                             </button>
                         </div>
@@ -403,7 +413,7 @@
                                     @php $total = 0 @endphp
                                     @if (session('cart'))
                                         @foreach (session('cart') as $id => $details)
-                                        {{-- {{    print_r($detail)}}; --}}
+                                            {{-- {{    print_r($detail)}}; --}}
                                             @php
                                                 // Convert quantity to a valid numeric value, default to 0 if not a valid number
                                                 $quantity = is_numeric($details['quantity']) ? intval($details['quantity']) : 0;
@@ -414,10 +424,12 @@
                                                 <td>
                                                     <img src="{{ asset('img') }}/{{ $details['image'] }}"
                                                         alt="product-img" title="product-img" class="avatar-lg rounded">
-                                                       <input type="hidden" name="id[]" value="{{$details['id']}}">
+                                                    <input type="hidden" name="id[]" value="{{ $details['id'] }}">
 
-                                                        <input type="hidden" name="qty[]" value="{{$details['quantity']}}">
-                                                        <input type="hidden" name="price[]" value="{{$details['payments_price']}}">
+                                                    <input type="hidden" name="qty[]"
+                                                        value="{{ $details['quantity'] }}">
+                                                    <input type="hidden" name="price[]"
+                                                        value="{{ $details['payments_price'] }}">
                                                 </td>
                                                 <td>
                                                     <h5 class="font-size-16 text-truncate">
@@ -429,8 +441,7 @@
                                                 <td>₦{{ $subtotal }}</td>
                                             </tr>
                                         @endforeach
-                                        
-    
+
                                         <tr class="bg-light">
                                             <td colspan="2">
                                                 <h5 class="font-size-14 m-0">Total:</h5>
@@ -453,4 +464,49 @@
         <!-- end row -->
 
     </div>
+@endsection
+@section('script')
+    <script>
+        function checkFormValidity() {
+            const formElements = document.querySelectorAll('#myForm [required]');
+            let allFieldsFilled = true;
+
+            formElements.forEach(element => {
+                if (!element.value.trim()) {
+                    allFieldsFilled = false;
+                }
+            });
+
+            // Enable/disable the submit buttons based on form validity
+            document.getElementById('paystackButton').disabled = !allFieldsFilled;
+            document.getElementById('cashButton').disabled = !allFieldsFilled;
+        }
+
+        // Attach event listeners to form elements
+        const formElements = document.querySelectorAll('#myForm [required]');
+        formElements.forEach(element => {
+            element.addEventListener('input', checkFormValidity);
+        });
+
+        const radio1 = document.getElementById('paystack');
+        const radio2 = document.getElementById('cash');
+        const button1 = document.getElementById('paystackButton');
+        const button2 = document.getElementById('cashButton');
+
+        // Initial display state
+        button1.style.display = 'block';
+        button2.style.display = 'none';
+
+        radio1.addEventListener('click', () => {
+            button1.style.display = 'block';
+            button2.style.display = 'none';
+            checkFormValidity(); // Call the function to update button states
+        });
+
+        radio2.addEventListener('click', () => {
+            button1.style.display = 'none';
+            button2.style.display = 'block';
+            checkFormValidity(); // Call the function to update button states
+        });
+    </script>
 @endsection
